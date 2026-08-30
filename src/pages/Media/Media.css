@@ -1,0 +1,482 @@
+/* ===== Hero — same overlay technique as Home/About, scoped to this page ===== */
+.media-hero {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--nav-overlay, -136px);
+  height: clamp(340px, 56.3vw, 1081px);
+  overflow: hidden;
+}
+
+.media-hero__media {
+  position: absolute;
+  inset: -15%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(50px);
+  transform: scale(1.3);
+}
+
+.media-hero__fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--color-bg) 92%);
+  pointer-events: none;
+}
+
+.media-intro {
+  padding-top: clamp(32px, 5.5vw, 90px);
+  text-align: center;
+}
+
+.media-intro__kicker {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.7vw, 2.6rem);
+}
+
+.media-intro__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 10vw, 9.85rem); /* 192px at 1920 */
+  line-height: 1.1;
+  color: var(--color-black);
+}
+
+.media-subtitle {
+  max-width: 1230px;
+  margin: clamp(24px, 4vw, 48px) auto 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.8vw, 1.75rem);
+  line-height: 1.5;
+}
+
+.media-subtitle em {
+  font-style: italic;
+  font-weight: 800;
+}
+
+/* ===== Marquee ribbons — exact prototype timing: logos loop over 45s
+   linear, text ribbon loops over the same 45s cycle. Distances are relative
+   (own-track %) so they scale responsively at any width. ===== */
+.media-logo-ribbon {
+  overflow: hidden;
+  border: 6px solid var(--color-white);
+  border-radius: var(--radius-md);
+  background: var(--color-glass-white);
+  box-shadow: var(--shadow-soft);
+  padding: 18px 0;
+}
+
+.media-logo-track {
+  display: flex;
+  width: max-content;
+  gap: 24px;
+  animation: media-logo-scroll 45s linear infinite;
+}
+
+.media-logo-track img {
+  height: 90px;
+  width: 180px;
+  object-fit: contain;
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+  opacity: 0.8;
+}
+
+@keyframes media-logo-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.media-text-ribbon {
+  overflow: hidden;
+  background: var(--color-glass-white);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  padding: 18px 0;
+}
+
+.media-text-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: media-logo-scroll 45s linear infinite;
+  font-family: var(--font-display);
+  color: var(--color-heading-muted);
+  font-size: clamp(1.1rem, 2vw, 1.9rem);
+}
+
+/* ===== Our Services — outer glass panel ===== */
+.media-services-panel {
+  border: 12px solid var(--color-white);
+  border-radius: var(--radius-xl);
+  background: var(--color-glass-white);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(24px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 36px);
+}
+
+.media-service-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(20px, 3vw, 36px);
+  align-items: center;
+  border: 10px solid var(--color-white);
+  border-radius: var(--radius-lg);
+  background: var(--color-glass-white);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(24px, 3vw, 48px);
+}
+
+.media-service-card--reverse {
+  flex-direction: row-reverse;
+}
+
+.media-service-card__text {
+  flex: 1 1 560px;
+  border: 8px solid var(--color-white);
+  border-radius: var(--radius-md);
+  background: var(--color-glass-white);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(20px, 2.5vw, 32px) clamp(24px, 3vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.media-service-card__text h3 {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+.media-service-card__text p {
+  font-family: var(--font-accent);
+  font-weight: 500;
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+
+/* Icon panel — orbiting corner glow + gentle pulse ring + hand-cursor demo,
+   matching the verified prototype's 45s synced timeline */
+.media-service-card__icon {
+  position: relative;
+  flex: 0 0 clamp(220px, 22vw, 355px);
+  width: clamp(220px, 22vw, 355px);
+  aspect-ratio: 1;
+  border: 8px solid var(--color-white);
+  border-radius: var(--radius-md);
+  background: var(--color-glass-white);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.media-service-card__glow {
+  position: absolute;
+  width: 39%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0.5;
+  animation: media-glow-orbit 45s linear infinite;
+}
+
+@keyframes media-glow-orbit {
+  0%   { left: -10%; top: -10%; }
+  22%  { left: -10%; top: 90%; }
+  44%  { left: 90%;  top: -10%; }
+  66%  { left: 90%;  top: 90%; }
+  88%  { left: -10%; top: -10%; }
+  100% { left: -10%; top: -10%; }
+}
+
+.media-service-card__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -50%);
+  animation: media-ring-pulse 45s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes media-ring-pulse {
+  0%, 8.9%, 100% { transform: translate(-50%, -50%) scale(1); }
+  4.6%           { transform: translate(-50%, -50%) scale(1.06); }
+}
+
+.media-service-card__center-label {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #727272;
+  line-height: 1.3;
+}
+
+.media-social-icon {
+  position: absolute;
+  width: 9%;
+  filter: opacity(0.85);
+}
+
+.media-service-card__cursor {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: media-cursor-demo 45s linear infinite;
+}
+
+.media-service-card__cursor img {
+  width: 24px;
+}
+
+.media-service-card__cursor-tag {
+  background: linear-gradient(180deg, #000, #5a5a5a);
+  color: var(--color-white);
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: 0.7rem;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+@keyframes media-cursor-demo {
+  0%             { transform: translate(0, 0); }
+  4.1%, 100%     { transform: translate(-38%, -35%); }
+}
+
+/* ===== Our Work ===== */
+.media-work-panel {
+  border: 12px solid var(--color-white);
+  border-radius: var(--radius-xl);
+  background: var(--color-glass-white);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(24px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.media-case {
+  border: 10px solid var(--color-white);
+  border-radius: var(--radius-lg);
+  background: var(--color-glass-white);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.media-case__title {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.3vw, 2.2rem);
+  margin-bottom: 12px;
+}
+
+.media-case__desc {
+  font-family: var(--font-accent);
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1.15vw, 1.1rem);
+  line-height: 1.5;
+  color: #1a1a1a;
+  margin-bottom: 28px;
+  max-width: 1100px;
+}
+
+.media-case__label {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-black);
+  font-size: clamp(1.1rem, 1.7vw, 1.6rem);
+  margin-top: 24px;
+}
+
+/* ===== Social Media Aesthetics — long-scroll phone tickers ===== */
+.media-phones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.media-phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: clamp(160px, 22vw, 240px);
+}
+
+.media-phone__frame {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 8px solid var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  position: relative;
+  background: var(--color-glass-white);
+}
+
+/* No animation — the tall feed image simply flows in normal document flow
+   inside the scrollable frame above. The user scrolls it with the mouse
+   wheel, trackpad, or touch, like scrolling a real phone screen. */
+.media-phone__scroll img {
+  width: 100%;
+  display: block;
+}
+
+.media-phone__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-glass-white);
+  border: 2px solid var(--color-white);
+  border-radius: 12px;
+  padding: 10px 16px;
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-black);
+  transition: transform var(--dur-fast) var(--ease-premium);
+}
+
+.media-phone__cta:hover {
+  transform: translateY(-2px);
+}
+
+.media-phone__cta img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ===== Cinematic showcase ===== */
+.media-showcase {
+  border: 10px solid var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.media-showcase img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== Free Social Audit — heading above the reused ContactForm ===== */
+.media-audit-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* ===== Floating page-local bottom nav (Media page only) ===== */
+.media-bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--color-border-grey);
+  border-radius: 20px;
+  padding: 8px 20px 8px 8px;
+  box-shadow: var(--shadow-nav);
+}
+
+.media-bottom-nav__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.media-bottom-nav__all img {
+  width: 20px;
+  height: 20px;
+}
+
+.media-bottom-nav__link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-black);
+}
+
+.media-bottom-nav__divider {
+  width: 1px;
+  height: 18px;
+  background: var(--color-border-grey);
+}
+
+@media (max-width: 1199px) {
+  .media-hero {
+    margin-top: var(--nav-overlay-tablet, -116px);
+  }
+}
+
+@media (max-width: 767px) {
+  .media-hero {
+    margin-top: var(--nav-overlay-mobile, -168px);
+    height: clamp(280px, 90vw, 460px);
+  }
+  .media-service-card,
+  .media-service-card--reverse {
+    flex-direction: column;
+  }
+  .media-service-card__icon {
+    flex: 0 0 auto;
+    width: min(280px, 70vw);
+  }
+  .media-bottom-nav {
+    bottom: 12px;
+    gap: 10px;
+    padding: 6px 14px 6px 6px;
+    max-width: calc(100vw - 24px);
+    overflow-x: auto;
+  }
+  .media-bottom-nav__link {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-logo-track,
+  .media-text-track,
+  .media-service-card__glow,
+  .media-service-card__ring,
+  .media-service-card__cursor {
+    animation: none;
+  }
+}

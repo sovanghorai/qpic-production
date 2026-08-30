@@ -1,0 +1,76 @@
+/* Top teaser row: wide box (~77% width) object-contain + dark portrait box (~23% width) object-contain */
+.grids-of-3__teaser {
+  display: grid;
+  grid-template-columns: 1217fr 367fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.grids-of-3__teaser-wide,
+.grids-of-3__teaser-dark {
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  height: clamp(200px, 21vw, 400px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grids-of-3__teaser-wide {
+  background: var(--color-white);
+}
+
+.grids-of-3__teaser-dark {
+  background: #0c0f14;
+}
+
+.grids-of-3__teaser-wide img,
+.grids-of-3__teaser-dark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Stacked full-width rows — object-cover, tall aspect matching Figma's
+   1608x713 ratio (~2.26:1) */
+.grids-of-3__row {
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  aspect-ratio: 1608 / 713;
+  margin-bottom: 16px;
+}
+
+.grids-of-3__row img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grids-of-3__row--highlight {
+  background: rgba(255, 0, 0, 0.6);
+  aspect-ratio: 1608 / 737;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grids-of-3__row--highlight img {
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .grids-of-3__teaser {
+    grid-template-columns: 1fr;
+  }
+  .grids-of-3__teaser-dark {
+    height: clamp(180px, 40vw, 300px);
+  }
+}
+
+@media (max-width: 767px) {
+  .grids-of-3__row {
+    aspect-ratio: 4 / 3;
+  }
+}

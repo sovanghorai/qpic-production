@@ -1,0 +1,70 @@
+.sale-grid__teaser {
+  display: grid;
+  grid-template-columns: 1217fr 367fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sale-grid__teaser-wide,
+.sale-grid__teaser-dark {
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  height: clamp(200px, 21vw, 400px);
+}
+
+.sale-grid__teaser-wide {
+  background: var(--color-white);
+}
+
+.sale-grid__teaser-dark {
+  background: #0c0f14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sale-grid__teaser-wide img {
+  width: 100%;
+  height: 100%;
+  /* Figma crops this to a thin top slice of a much taller collage */
+  object-fit: cover;
+  object-position: top;
+}
+
+.sale-grid__teaser-dark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* The single tall continuous sale banner — Figma ratio is ~1608:3565 (very
+   tall portrait), shown at full width, not cropped into tiles */
+.sale-grid__banner {
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1608 / 3565;
+}
+
+.sale-grid__banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .sale-grid__teaser {
+    grid-template-columns: 1fr;
+  }
+  .sale-grid__teaser-dark {
+    height: clamp(180px, 40vw, 300px);
+  }
+}
+
+@media (max-width: 767px) {
+  .sale-grid__banner {
+    aspect-ratio: 9 / 18;
+  }
+}

@@ -1,0 +1,25 @@
+/* Global breakpoint helpers used across all pages */
+
+@media (max-width: 1599px) {
+  :root {
+    --container-padding: 48px;
+  }
+}
+
+@media (max-width: 1199px) {
+  :root {
+    --container-padding: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --container-padding: 20px;
+    --radius-xl: 32px;
+    --radius-lg: 24px;
+    --radius-md: 18px;
+  }
+  .section {
+    padding: 48px 0;
+  }
+}

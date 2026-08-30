@@ -1,0 +1,368 @@
+/* ===== Hero — pulled up behind the transparent sticky navbar, same
+   overlay technique used on Home, scoped to this page only. ===== */
+.about-hero {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--nav-overlay, -136px);
+  padding-top: clamp(140px, 18vw, 260px);
+  padding-bottom: clamp(40px, 6vw, 80px);
+  min-height: clamp(420px, 43vw, 820px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Ambient blob motion — reproduces the exact prototype keyframe data found
+   on this file's glow-blob pattern: position drifts on a linear ease while
+   scale pulses on a separate cubic-bezier(.5,0,.5,1) ease, 16s infinite
+   loop. Position and scale are split across two nested wrappers because a
+   single CSS `transform`/`animation` can't apply two different easing
+   curves to translate vs scale at once. */
+.about-hero__blob-wrap {
+  position: absolute;
+  width: 62vw;
+  max-width: 1200px;
+  aspect-ratio: 1;
+  pointer-events: none;
+  animation: about-blob-drift 16s linear infinite;
+}
+
+.about-hero__blob-wrap--tl {
+  top: -31vw;
+  left: -31vw;
+  --drift-x1: 120%; --drift-x2: 241%; --drift-x3: 120%; --drift-x4: 0%;
+  --drift-y1: 49%; --drift-y2: -0.9%; --drift-y3: -51%; --drift-y4: -0.9%;
+}
+
+.about-hero__blob-wrap--br {
+  top: 8vw;
+  right: -31vw;
+  --drift-x1: -120%; --drift-x2: -241%; --drift-x3: -120%; --drift-x4: 0%;
+  --drift-y1: -50%; --drift-y2: 0%; --drift-y3: 50%; --drift-y4: 0%;
+}
+
+.about-hero__blob-scale {
+  width: 100%;
+  height: 100%;
+  animation: about-blob-pulse 16s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.about-hero__blob {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+.about-hero__blob--tl {
+  background: linear-gradient(180deg, rgba(247, 247, 247, 0) 50%, #cbcbcb 100%);
+}
+
+.about-hero__blob--br {
+  background: linear-gradient(180deg, #cbcbcb 0%, rgba(247, 247, 247, 0) 50%);
+}
+
+@keyframes about-blob-drift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(var(--drift-x1), var(--drift-y1)); }
+  50%  { transform: translate(var(--drift-x2), var(--drift-y2)); }
+  75%  { transform: translate(var(--drift-x3), var(--drift-y3)); }
+  100% { transform: translate(var(--drift-x4), var(--drift-y4)); }
+}
+
+@keyframes about-blob-pulse {
+  0%   { transform: scale(1, 1); }
+  25%  { transform: scale(1.5, 0.5); }
+  50%  { transform: scale(1, 1); }
+  75%  { transform: scale(1.5, 0.5); }
+  100% { transform: scale(1, 1); }
+}
+
+/* Hero text entrance — plays once on mount (hero is above the fold, so this
+   isn't scroll-triggered like the rest of the site's .reveal elements). */
+.about-hero__title--enter {
+  animation: about-hero-fade-up 0.9s var(--ease-premium) both;
+}
+
+.about-hero__intro--enter {
+  animation: about-hero-fade-up 0.9s var(--ease-premium) 0.18s both;
+}
+
+@keyframes about-hero-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero__blob-wrap,
+  .about-hero__blob-scale {
+    animation: none;
+  }
+  .about-hero__title--enter,
+  .about-hero__intro--enter {
+    animation: none;
+  }
+}
+
+.about-hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.5rem, 14.3vw, 14.3rem); /* 275px at 1920 */
+  line-height: 1;
+  letter-spacing: 0.01em;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.2) 24.848%,
+    rgba(255, 255, 255, 0.2) 79.242%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  mix-blend-mode: hard-light;
+  z-index: 1;
+}
+
+.about-hero__intro {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-heading-muted);
+  font-size: clamp(1.15rem, 2.1vw, 2.5rem); /* 40px at 1920 */
+  max-width: 1085px;
+  line-height: 1.4;
+  z-index: 1;
+}
+
+/* ===== Who We Are ===== */
+.who-we-are {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+.who-we-are .body-copy {
+  max-width: 1200px;
+}
+
+/* ===== Meet our Team ===== */
+.about-team__badge {
+  display: flex;
+  margin: 0 auto 48px;
+  width: fit-content;
+  background: var(--color-bg);
+}
+
+.about-team__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.team-card {
+  position: relative;
+  border: 10px solid var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  aspect-ratio: 334 / 586;
+}
+
+.team-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--shadow-inset);
+  pointer-events: none;
+}
+
+.team-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-card__overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 24px 16px 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 50.5%, #fff 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.team-card__socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-white);
+  border-radius: 40px;
+  padding: 10px 18px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.25);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-border-grey);
+  font-size: 0.95rem;
+}
+
+.team-card__socials img {
+  width: 16px;
+  height: 16px;
+}
+
+.team-card__meta {
+  text-align: center;
+}
+
+.team-card__name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.team-card__verified {
+  width: 16px;
+  height: 16px;
+}
+
+.team-card__role {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #000;
+  line-height: 1.3;
+}
+
+.about-team__photo {
+  width: 100%;
+  aspect-ratio: 1600 / 800;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.about-team__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-team__copy {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Trusted Brands ===== */
+.brand-panel {
+  position: relative;
+  overflow: hidden;
+  border: 10px solid var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.brand-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--shadow-inset);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.brand-panel__blob {
+  position: absolute;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.brand-panel__blob--red {
+  background: rgba(221, 0, 0, 0.57);
+  top: 0;
+  left: -18%;
+}
+
+.brand-panel__blob--blue {
+  background: rgba(0, 7, 221, 0.57);
+  top: 0;
+  right: -18%;
+}
+
+.brand-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px 24px;
+  padding: clamp(24px, 3.9vw, 75px) clamp(20px, 3.75vw, 72px);
+}
+
+.brand-grid__cell {
+  aspect-ratio: 514 / 257;
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-grid__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.8;
+}
+
+.about-industries {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+
+@media (max-width: 1024px) {
+  .about-team__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .brand-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .about-hero {
+    margin-top: var(--nav-overlay-mobile, -168px);
+    padding-top: clamp(150px, 42vw, 220px);
+  }
+  .about-team__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .brand-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-industries {
+    text-align: center;
+  }
+}
