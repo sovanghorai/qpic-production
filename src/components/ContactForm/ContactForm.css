@@ -176,16 +176,119 @@
   }
 }
 
+
 @media (max-width: 767px) {
   .contact-form {
+    grid-template-columns: 1fr;
+    gap: 22px;
+
+    border: 6px solid var(--color-white);
     border-radius: var(--radius-lg);
-    padding: 24px;
+
+    padding: 20px;
   }
+
+  /* LEFT SECTION */
+  .contact-form__left {
+    gap: 16px;
+  }
+
+  .contact-form__badge {
+    gap: 8px;
+    padding: 6px 14px 6px 6px;
+    font-size: 0.85rem;
+  }
+
+  .contact-form__badge-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
+
+  .contact-form__title {
+    font-size: 2rem;
+    line-height: 1.05;
+  }
+
+  .contact-form__subtitle {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+
+  /* CONTACT DETAILS */
+  .contact-form__details {
+    gap: 10px;
+  }
+
+  .contact-form__detail {
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 18px;
+  }
+
+  .contact-form__detail-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 14px;
+    font-size: 1rem;
+  }
+
+  .contact-form__detail-label {
+    font-size: 0.8rem;
+  }
+
+  .contact-form__detail-value {
+    font-size: 0.78rem;
+
+    /* Prevent very long text from increasing height */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 210px;
+  }
+
+  .contact-form__detail-arrow {
+    font-size: 0.9rem;
+  }
+
+  /* FORM */
+  .contact-form__right {
+    gap: 12px;
+    border-radius: 24px;
+    padding: 14px;
+  }
+
   .contact-form__row {
     flex-direction: column;
+    gap: 12px;
   }
-  .contact-form__right {
-    border-radius: 28px;
-    padding: 20px;
+
+  .contact-form__input {
+    padding: 16px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+  }
+
+  .contact-form__textarea {
+    min-height: 100px;
+    border-radius: 18px;
+  }
+
+  .contact-form__submit {
+    padding: 16px;
+    border-radius: 18px;
+    font-size: 1rem;
+    margin-top: 2px;
+  }
+
+  /* POPUP CLOSE BUTTON */
+  .contact-form__close {
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 }
