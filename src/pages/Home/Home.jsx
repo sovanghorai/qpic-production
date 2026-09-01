@@ -4,7 +4,7 @@ import useReveal from '../../hooks/useReveal.js'
 import ContactForm from '../../components/ContactForm/ContactForm.jsx'
 import heroVideo from '../../assets/home/videos/hero_video.mp4'
 import productionsVideo from '../../assets/home/videos/Qpic_Production_Video.mp4'
-import mediaVideo from '../../assets/home/videos/Qpic_Media_Video.mp4'
+import mediaVideo from '../../assets/home/videos/Qpic_Media_video.mp4'
 import ChandanVideo from '../../assets/home/videos/Chandan_Ji_video.mp4'
 import './Home.css'
 
