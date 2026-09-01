@@ -1,8 +1,9 @@
 import useReveal from '../../hooks/useReveal.js'
 import ContactForm from '../../components/ContactForm/ContactForm.jsx'
-import { personPhoto, teamGroupPhoto, brandLogos, icons } from '../../assets/about/index.js'
+import {brandLogos, icons } from '../../assets/about/index.js'
 import './About.css'
-
+import personPhoto from '../../assets/about/images/Chandan_Ji_Photo.png'
+import teamGroupPhoto from '../../assets/about/images/Group_Photo.png'
 const team = [
   { name: 'Chandan Singh', roleLine1: 'Founder and CEO of QPIC', roleLine2: 'with expertise in everything' },
   { name: 'Chandan Singh', roleLine1: 'Founder and CEO of QPIC', roleLine2: 'with expertise in everything' },

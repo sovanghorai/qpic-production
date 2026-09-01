@@ -2,6 +2,10 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useReveal from '../../hooks/useReveal.js'
 import ContactForm from '../../components/ContactForm/ContactForm.jsx'
+import heroVideo from '../../assets/home/videos/hero_video.mp4'
+import productionsVideo from '../../assets/home/videos/Qpic_Production_Video.mp4'
+import mediaVideo from '../../assets/home/videos/Qpic_Media_Video.mp4'
+import ChandanVideo from '../../assets/home/videos/Chandan_Ji_video.mp4'
 import './Home.css'
 
 const heroBlur = 'https://www.figma.com/api/mcp/asset/a3dc2e0b-9e41-4b01-b34e-d5ee8cffedce.png'
@@ -21,7 +25,9 @@ export default function Home() {
     <div className="home">
       {/* HERO VIDEO — full-bleed, sits behind the (transparent) navbar, no text inside it */}
       <section className="home-hero-video" aria-hidden="false">
-        <div className="home-hero-video__media" style={{ backgroundImage: `url(${heroBlur})` }} />
+        <div className="home-hero-video__media">
+          <video src={heroVideo} autoPlay muted loop  playsInline />
+        </div>
         <div className="home-hero-video__fade" />
       </section>
 
@@ -63,7 +69,7 @@ export default function Home() {
             </div>
 
             <div className="service-showcase__media glass-card">
-              <img src={productionsImg} alt="QPIC Productions behind the scenes" loading="lazy" />
+              <video src={productionsVideo} autoPlay muted loop playsInline />
             </div>
 
             <Link to="/productions" className="btn-pill-light service-showcase__cta">
@@ -97,7 +103,7 @@ export default function Home() {
             </div>
 
             <div className="service-showcase__media glass-card">
-              <img src={mediaImg} alt="QPIC Media team at work" loading="lazy" />
+              <video src={mediaVideo} autoPlay muted loop playsInline />
             </div>
 
             <Link to="/media" className="btn-pill-light service-showcase__cta">
@@ -112,7 +118,7 @@ export default function Home() {
         <section className="section">
           <div className="container">
             <div className="home-portrait glass-card reveal">
-              <img src={thirdImg} alt="QPIC founder at work" loading="lazy" />
+              <video src={ChandanVideo} autoPlay muted loop playsInline />
             </div>
           </div>
         </section>
