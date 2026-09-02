@@ -6,13 +6,8 @@ import heroVideo from '../../assets/home/videos/hero_video.mp4'
 import productionsVideo from '../../assets/home/videos/Qpic_Production_Video.mp4'
 import mediaVideo from '../../assets/home/videos/Qpic_Media_video.mp4'
 import ChandanVideo from '../../assets/home/videos/Chandan_Ji_video.mp4'
+import arrowIcon from '../../assets/common/icons/home_arrow_redirector_icon.svg'
 import './Home.css'
-
-const heroBlur = 'https://www.figma.com/api/mcp/asset/a3dc2e0b-9e41-4b01-b34e-d5ee8cffedce.png'
-const productionsImg = 'https://www.figma.com/api/mcp/asset/858c0c1b-5034-4689-951c-e1ea0c633c22.png'
-const mediaImg = 'https://www.figma.com/api/mcp/asset/624be73f-ae1e-4f6d-9ec6-b815d8f7d8b1.png'
-const thirdImg = 'https://www.figma.com/api/mcp/asset/ba2cf0ed-c8b8-4a32-af71-6ce536819019.png'
-const arrowIcon = 'https://www.figma.com/api/mcp/asset/ce3bf66e-bd26-4910-ad94-39428819e107.svg'
 
 const productionsTags = ['Client Shoot', 'Music Shoot', 'Short-Film Shoot', 'Podcast Shoot', 'Event Shoot', 'UGC Model Shoot', 'Product Shoot']
 const mediaTags = ['Social Media Marketing', 'Performance Marketing', 'Content Creation', 'Branding', 'UI/UX & Development']

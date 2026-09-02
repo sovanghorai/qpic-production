@@ -20,6 +20,9 @@ import brandLogo12 from './logos/logo_12.png'
 import brandLogo13 from './logos/logo_13.png'
 import brandLogo14 from './logos/logo_14.png'
 import brandLogo15 from './logos/logo_15.png'
+import linkedin from '../common/icons/linkedin.svg'
+import instagram from '../common/icons/instagram.svg'
+import verifiedCheck from '../common/icons/Check_Mark.svg'
 
 export const brandLogos = [
   brandLogo1,
@@ -40,7 +43,7 @@ export const brandLogos = [
 ]
 
 export const icons = {
-  linkedin: 'https://www.figma.com/api/mcp/asset/abc34fd6-b536-4d8d-b784-bcf086b300a0.svg',
-  instagram: 'https://www.figma.com/api/mcp/asset/16d4ae99-1f34-485c-b0b1-dad1174dfcf1.svg',
-  verifiedCheck: 'https://www.figma.com/api/mcp/asset/89ea2501-89db-4f4d-8f45-3464943d9af1.svg',
+  linkedin: linkedin,
+  instagram: instagram  ,
+  verifiedCheck: verifiedCheck
 }

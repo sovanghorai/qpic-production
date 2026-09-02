@@ -354,6 +354,7 @@
   .about-hero {
     margin-top: var(--nav-overlay-mobile, -168px);
     padding-top: clamp(150px, 42vw, 220px);
+    
   }
   .about-team__grid {
     grid-template-columns: 1fr 1fr;
@@ -364,5 +365,15 @@
   }
   .about-industries {
     text-align: center;
+  }
+  .team-card__name {
+    gap: 2px;
+    font-size : 1rem;
+  }
+  .team-card__socials {
+    padding: 8px 14px;
+  }
+  .team-card__overlay{
+    gap: 9px;
   }
 }
