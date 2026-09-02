@@ -354,6 +354,7 @@
   .about-hero {
     margin-top: var(--nav-overlay-mobile, -168px);
     padding-top: clamp(150px, 42vw, 220px);
+    gap: 52px;
     
   }
   .about-team__grid {

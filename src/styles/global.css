@@ -198,4 +198,11 @@ ul { list-style: none; }
   .eyebrow-pill {
     padding: 6px 20px;
   }
+  .marquee-ribbon {
+    padding: 10px 0;
+  }
+  .btn-pill-light {
+    padding: 10px 18px;
+  }
+  
 }
