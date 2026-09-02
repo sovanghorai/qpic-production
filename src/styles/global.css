@@ -193,3 +193,9 @@ ul { list-style: none; }
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
+@media (max-width: 767px) {
+  .eyebrow-pill {
+    padding: 6px 20px;
+  }
+}

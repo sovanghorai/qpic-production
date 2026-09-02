@@ -169,11 +169,17 @@
 
 @media (max-width: 767px) {
   .service-showcase {
-    padding: 24px;
+    padding: 8px;
     border-radius: var(--radius-lg);
     gap: 20px;
   }
   .service-showcase__badge {
     padding: 12px 20px;
+  }
+  .marquee-ribbon {
+    padding: 12px 0;
+  }
+  .home-hero-video__media {
+    inset: 12%;
   }
 }
