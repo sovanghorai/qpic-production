@@ -1,37 +1,91 @@
+/* =====================================================
+   NAVBAR
+===================================================== */
+
 .navbar {
   position: sticky;
   top: 0;
   z-index: 100;
+
   padding: 24px clamp(20px, 6vw, 80px);
-  /* fully transparent — lets the hero video / page content show through,
-     exactly like the Figma HEADER (only its child pills carry a background) */
+
   background: transparent;
 }
 
+
+/* =====================================================
+   NAVBAR INNER
+===================================================== */
+
 .navbar__inner {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 16px;
+
   max-width: 1760px;
+
   margin: 0 auto;
 }
 
+
+/* =====================================================
+   LOGO
+===================================================== */
+
 .navbar__logo {
   font-family: var(--font-heading);
+
   font-weight: 700;
   font-size: 1.15rem;
+
   background: rgba(255, 255, 255, 0.1);
+
   padding: 12px 16px;
+
   border-radius: 20px;
+
   box-shadow: var(--shadow-nav);
+
   white-space: nowrap;
 }
+
+
+/* =====================================================
+   DESKTOP NAVIGATION
+=======================start============================== */
+/* // Comment this only smoth transition */
+/* .navbar__links {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  background: rgba(255, 255, 255, 0.1);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  border: 1px solid var(--color-border-grey);
+
+  border-radius: 20px;
+
+  padding: 8px;
+
+  box-shadow: var(--shadow-nav);
+} */
+
+/*========================end============================= */
 
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 0;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   border: 1px solid var(--color-border-grey);
@@ -41,156 +95,461 @@
 }
 
 .navbar__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1rem;
   color: var(--color-black);
+
   padding: 14px 18px;
   border-radius: 14px;
-  transition: background var(--dur-fast), color var(--dur-fast);
+
   white-space: nowrap;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    width 0.35s ease;
 }
 
+
+/* Separator */
+.navbar__link:not(:last-child)::after {
+  content: '|';
+
+  position: absolute;
+  right: -1px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: var(--color-black);
+  font-size: 15px;
+  font-weight: 500;
+
+  pointer-events: none;
+}
+
+
+/* Active item */
 .navbar__link--active {
   background: var(--color-black);
   color: var(--color-white);
 }
 
+
+/* Hide separator inside/next to active pill */
+.navbar__link--active::after {
+  color: var(--color-black);
+}
+
+
+/* =====================================================
+   BLACK ACTIVE BAR
+===================================================== */
+
+.navbar__active-indicator {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  z-index: 0;
+
+  width: 0;
+  height: 0;
+
+  border-radius: 14px;
+
+  background: var(--color-black);
+
+  pointer-events: none;
+
+  /*
+   * Main smooth animation
+   */
+  transition:
+    transform 0.55s
+      cubic-bezier(0.22, 1, 0.36, 1),
+
+    width 0.4s
+      cubic-bezier(0.22, 1, 0.36, 1),
+
+    height 0.3s ease;
+
+  will-change:
+    transform,
+    width,
+    height;
+}
+
+
+/* =====================================================
+   NAV ITEM
+===================================================== */
+
+.navbar__link {
+  position: relative;
+
+  z-index: 1;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  /*
+   * IMPORTANT:
+   * Same item dimensions whether active/inactive.
+   *
+   * This stops the navbar from jumping.
+   */
+  min-height: 48px;
+
+  padding: 14px 18px;
+
+  border-radius: 14px;
+
+  font-family: var(--font-display);
+
+  font-weight: 700;
+
+  font-size: 1rem;
+
+  color: var(--color-black);
+
+  white-space: nowrap;
+
+  transition:
+    color 0.25s ease;
+}
+
+
+/* =====================================================
+   ACTIVE TEXT
+===================================================== */
+
+.navbar__link--active {
+  color: var(--color-white);
+}
+
+
+/* =====================================================
+   ICON SPACE
+===================================================== */
+
+.navbar__icon-space {
+  /*
+   * Always reserve icon space.
+   *
+   * Icon itself is hidden when inactive.
+   */
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  margin-right: 9px;
+
+  flex-shrink: 0;
+
+  opacity: 0;
+
+  transform: translateX(-5px);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.4s
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =====================================================
+   ACTIVE ICON
+===================================================== */
+
+.navbar__link--active
+  .navbar__icon-space {
+  opacity: 1;
+
+  transform: translateX(0);
+}
+
+
+/* =====================================================
+   SVG ICON
+===================================================== */
+
+.navbar__link-icon {
+  display: block;
+
+  width: 22px;
+  height: 22px;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+.navbar__link-text {
+  display: inline-block;
+
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   CONTACT BUTTON
+===================================================== */
+
 .navbar__cta {
   display: inline-flex;
+
   align-items: center;
+  justify-content: center;
+
   gap: 10px;
+
   background: var(--color-black);
+
   color: var(--color-white);
+
   border: 1px solid var(--color-border-grey);
+
   border-radius: 20px;
+
   padding: 18px 26px;
+
   font-family: var(--font-display);
+
   font-weight: 700;
+
   font-size: 1rem;
+
   box-shadow: var(--shadow-nav);
+
   white-space: nowrap;
-  transition: transform var(--dur-fast) var(--ease-premium);
+
+  transition:
+    transform var(--dur-fast)
+    var(--ease-premium);
 }
+
 
 .navbar__cta:hover {
   transform: translateY(-2px);
 }
 
+
 .navbar__cta-icon {
   font-size: 1rem;
 }
 
+
+/* =====================================================
+   TABLET
+===================================================== */
+
 @media (max-width: 1024px) {
+
   .navbar__links {
     gap: 8px;
   }
+
   .navbar__link {
     padding: 10px 12px;
+
     font-size: 0.9rem;
   }
+
   .navbar__cta {
     padding: 12px 18px;
   }
+
 }
 
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 767px) {
 
   .navbar {
     padding: 12px 16px;
+
     background: transparent;
+
     backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
+
 
   .navbar__inner {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
+
     width: 100%;
+
     position: relative;
   }
 
-  /* Logo */
+
+  /* ===================================================
+     LOGO
+  =================================================== */
+
   .navbar__logo {
     font-size: 1rem;
+
     padding: 12px 16px;
+
     border-radius: 20px;
   }
 
-  /* Hide desktop navigation */
+
+  /* ===================================================
+     HIDE DESKTOP NAV
+  =================================================== */
+
   .navbar__links {
     display: none;
   }
 
-  /* Hide desktop contact */
+
+  /* ===================================================
+     HIDE DESKTOP CONTACT
+  =================================================== */
+
   .navbar__cta {
     display: none;
   }
 
-  /* Hamburger */
+
+  /* ===================================================
+     HAMBURGER
+  =================================================== */
+
   .navbar__hamburger {
     display: flex;
+
     width: 48px;
     height: 48px;
+
     padding: 0;
+
     border: 1px solid var(--color-border-grey);
+
     border-radius: 18px;
+
     background: rgba(255, 255, 255, 0.1);
+
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
     box-shadow: var(--shadow-nav);
 
     align-items: center;
     justify-content: center;
+
     flex-direction: column;
+
     gap: 5px;
 
     cursor: pointer;
   }
 
+
   .navbar__hamburger span {
     display: block;
+
     width: 20px;
     height: 2px;
+
     background: var(--color-black);
+
     border-radius: 2px;
+
     transition:
       transform 0.25s ease,
       opacity 0.25s ease;
   }
 
-  /* Hamburger → X */
-  .navbar__hamburger--open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+
+  /* ===================================================
+     HAMBURGER → X
+  =================================================== */
+
+  .navbar__hamburger--open
+    span:nth-child(1) {
+    transform:
+      translateY(7px)
+      rotate(45deg);
   }
 
-  .navbar__hamburger--open span:nth-child(2) {
+
+  .navbar__hamburger--open
+    span:nth-child(2) {
     opacity: 0;
   }
 
-  .navbar__hamburger--open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+
+  .navbar__hamburger--open
+    span:nth-child(3) {
+    transform:
+      translateY(-7px)
+      rotate(-45deg);
   }
 
-  /* Mobile dropdown */
+
+  /* ===================================================
+     MOBILE MENU
+  =================================================== */
+
   .navbar__mobile-menu {
     position: absolute;
+
     top: calc(100% + 10px);
+
     left: 0;
     right: 0;
 
     padding: 12px;
 
-    background: rgba(247, 247, 247, 0.92);
+    background:
+      rgba(247, 247, 247, 0.92);
+
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 
     border: 1px solid var(--color-border-grey);
+
     border-radius: 22px;
+
     box-shadow: var(--shadow-nav);
 
     opacity: 0;
+
     visibility: hidden;
+
     transform: translateY(-10px);
+
+    pointer-events: none;
 
     transition:
       opacity 0.25s ease,
@@ -200,74 +559,181 @@
     z-index: 200;
   }
 
+
   .navbar__mobile-menu--open {
     opacity: 1;
+
     visibility: visible;
+
+    pointer-events: auto;
+
     transform: translateY(0);
   }
 
-  /* Mobile links */
+
+  /* ===================================================
+     MOBILE LINKS
+  =================================================== */
+
   .navbar__mobile-links {
     display: flex;
+
     flex-direction: column;
+
     gap: 5px;
   }
 
+
   .navbar__mobile-link {
     display: flex;
+
     align-items: center;
 
     min-height: 48px;
+
     padding: 12px 16px;
 
     border-radius: 14px;
 
     font-family: var(--font-display);
+
     font-size: 1rem;
+
     font-weight: 700;
 
     color: var(--color-black);
+
+    transition:
+      background 0.25s ease,
+      color 0.25s ease;
   }
+
 
   .navbar__mobile-link--active {
     background: var(--color-black);
+
     color: var(--color-white);
   }
 
-  /* Mobile Contact */
+
+  /* ===================================================
+     MOBILE ICON
+  =================================================== */
+
+  .navbar__mobile-icon-space {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 0;
+
+    height: 21px;
+
+    overflow: hidden;
+
+    margin-right: 0;
+
+    opacity: 0;
+
+    transform: translateX(-5px);
+
+    flex-shrink: 0;
+
+    transition:
+      width 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1),
+
+      margin-right 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1),
+
+      opacity 0.2s ease,
+
+      transform 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  .navbar__mobile-icon-space--active {
+    width: 21px;
+
+    margin-right: 10px;
+
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+
+
+  .navbar__mobile-link-icon {
+    display: block;
+
+    width: 21px;
+    height: 21px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+  }
+
+
+  /* ===================================================
+     MOBILE CONTACT
+  =================================================== */
+
   .navbar__mobile-cta {
     width: 100%;
+
     margin-top: 10px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     gap: 10px;
 
     min-height: 50px;
+
     padding: 12px 18px;
 
     border: 1px solid var(--color-border-grey);
+
     border-radius: 16px;
 
     background: var(--color-black);
+
     color: var(--color-white);
 
     font-family: var(--font-display);
+
     font-size: 1rem;
+
     font-weight: 700;
 
     cursor: pointer;
   }
+
 }
 
-/* Hamburger is hidden on desktop */
+
+/* =====================================================
+   DESKTOP DEFAULT:
+   HAMBURGER + MOBILE MENU HIDDEN
+===================================================== */
+
 .navbar__hamburger,
 .navbar__mobile-menu {
   display: none;
 }
 
+
+/* =====================================================
+   MOBILE DISPLAY
+===================================================== */
+
 @media (max-width: 767px) {
+
   .navbar__hamburger {
     display: flex;
   }
@@ -275,7 +741,23 @@
   .navbar__mobile-menu {
     display: block;
   }
+
 }
 
 
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
 
+@media (prefers-reduced-motion: reduce) {
+
+  .navbar__active-indicator,
+  .navbar__icon-space,
+  .navbar__mobile-icon-space,
+  .navbar__mobile-menu,
+  .navbar__mobile-link,
+  .navbar__hamburger span {
+    transition: none !important;
+  }
+
+}

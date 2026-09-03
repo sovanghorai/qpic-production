@@ -1,0 +1,109 @@
+.section-bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--color-border-grey);
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: var(--shadow-nav);
+}
+
+.section-bottom-nav--light {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.section-bottom-nav--dark {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.section-bottom-nav__group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.section-bottom-nav__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: transparent;
+  transition: background var(--dur-fast) var(--ease-premium),
+    color var(--dur-fast) var(--ease-premium),
+    padding var(--dur-fast) var(--ease-premium);
+}
+
+.section-bottom-nav--light .section-bottom-nav__item { color: var(--color-black); }
+.section-bottom-nav--dark .section-bottom-nav__item { color: #fff; }
+
+.section-bottom-nav__item--active {
+  padding: 14px 18px 14px 16px;
+  box-shadow: var(--shadow-nav);
+}
+
+.section-bottom-nav--light .section-bottom-nav__item--active {
+  background: var(--color-black);
+  color: #fff;
+}
+
+.section-bottom-nav--dark .section-bottom-nav__item--active {
+  background: #000;
+  color: #fff;
+}
+
+.section-bottom-nav__icon {
+  display: inline-flex;
+  align-items: center;
+  animation: section-nav-icon-in 0.25s var(--ease-premium);
+}
+
+.section-bottom-nav__icon img {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes section-nav-icon-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.section-bottom-nav__divider {
+  width: 1px;
+  height: 18px;
+  background: var(--color-border-grey);
+}
+
+@media (max-width: 767px) {
+  .section-bottom-nav {
+    bottom: 12px;
+    gap: 10px;
+    padding: 6px;
+    max-width: calc(100vw - 24px);
+    overflow-x: auto;
+  }
+  .section-bottom-nav__group { gap: 10px; }
+  .section-bottom-nav__item {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    padding: 10px 12px;
+  }
+  .section-bottom-nav__item--active {
+    padding: 10px 12px 10px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-bottom-nav__icon {
+    animation: none;
+  }
+}
