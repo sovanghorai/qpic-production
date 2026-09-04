@@ -146,7 +146,7 @@
 /* =========================================================
   ====================== OUR SERVICES ======================
    ========================================================= */
-
+ /* This Border remove for mobile desine */
 .media-services-panel {
   width: 100%;
   box-sizing: border-box;
@@ -163,7 +163,7 @@
   flex-direction: column;
 
   gap: clamp(18px, 2vw, 26px);
-}
+} 
 
 
 /* =========================================================
@@ -373,7 +373,7 @@
 
 
 
-
+/* This Border remove for mobile desine */
 .media-work-panel {
   border: 12px solid var(--color-white);
   border-radius: var(--radius-xl);
