@@ -1,4 +1,32 @@
-import { d2cBranding } from '../../../assets/media/index.js'
+import D2C_gride_logo from '../../../assets/media/images/D2C_gride_logo.png'
+import D2C_gride_thump from '../../../assets/media/images/D2C_gride_thump.png'
+import D2C_gride_1 from '../../../assets/media/images/D2C_gride_1.png'
+import D2C_gride_2 from '../../../assets/media/images/D2C_gride_2.png'
+import D2C_produc_grid_1 from '../../../assets/media/images/D2C_produc_grid_1.png'
+import D2C_produc_grid_2 from '../../../assets/media/images/D2C_produc_grid_2.png'
+import D2C_produc_grid_3 from '../../../assets/media/images/D2C_produc_grid_3.png'
+import D2C_produc_grid_4 from '../../../assets/media/images/D2C_produc_grid_4.png'
+import D2C_produc_grid_5 from '../../../assets/media/images/D2C_produc_grid_5.png'
+import D2C_produc_grid_6 from '../../../assets/media/images/D2C_produc_grid_6.png'
+
+const d2cBranding = {
+  heroWide: D2C_gride_thump,
+  heroSquare: D2C_gride_logo,
+  rows: [
+    D2C_gride_1,
+    D2C_gride_2,
+  ],
+  productGrid: [
+    D2C_produc_grid_1,
+    D2C_produc_grid_2,
+    D2C_produc_grid_3,
+    D2C_produc_grid_4,
+    D2C_produc_grid_5,
+    D2C_produc_grid_6,
+  ],
+  // bgTexture: 'https://www.figma.com/api/mcp/asset/282ee338-d066-493a-91c9-3c34c78192b6.png',
+}
+
 import './D2CBranding.css'
 
 export default function D2CBranding() {

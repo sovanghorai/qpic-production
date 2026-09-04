@@ -1,14 +1,26 @@
 import useReveal from '../../hooks/useReveal.js'
 import ContactForm from '../../components/ContactForm/ContactForm.jsx'
 import { brandLogos } from '../../assets/common/logos/index.js'
-import {
-  heroGlow, scrollPhones, cinematicShowcase, icons, instagramUrl,
-} from '../../assets/media/index.js'
+import { instagramUrl} from '../../assets/media/index.js'
 import TheGridsOf3 from './sections/TheGridsOf3.jsx'
 import SaleDrivenMultiGrid from './sections/SaleDrivenMultiGrid.jsx'
 import D2CBranding from './sections/D2CBranding.jsx'
+import heroGlowVideo from '../../assets/media/videos/hero.mp4'
+import ServiceIcon from '../../assets/media/videos/Services.mp4'
+import mykaa_scroll_1 from '../../assets/media/images/mykaa_scroll_1.png'
+import mykaa_scroll_2 from '../../assets/media/images/mykaa_scroll.png'
+import sky_scroll_1 from '../../assets/media/images/sky_scroll.png'
+import silver_scroll_1 from '../../assets/media/images/silver_scroll.png'
+import instagramIcon from '../../assets/common/icons/instagram.svg'
+import cinematicShowcase from '../../assets/media/videos/Chandan_Ji_video.mp4'
 import './Media.css'
 
+const scrollPhones = [
+  { name: 'mykaa-scroll-1', image: mykaa_scroll_1 },
+  { name: 'mykaa-scroll-2', image: mykaa_scroll_2 },
+  { name: 'sky-scroll-1', image: sky_scroll_1 },
+  { name: 'silver-scroll-1', image: silver_scroll_1 },
+]
 const services = [
   {
     title: '✦ Social Media Marketing',
@@ -32,30 +44,6 @@ const services = [
   },
 ]
 
-const socialIconLayout = [
-  { icon: icons.linkedin, style: { left: '9%', top: '58%' } },
-  { icon: icons.pinterest, style: { left: '27%', top: '80%' } },
-  { icon: icons.whatsapp, style: { left: '17%', top: '25%' } },
-  { icon: icons.facebook, style: { left: '73%', top: '80%' } },
-  { icon: icons.instagram, style: { left: '58%', top: '5%' } },
-]
-
-function ServiceIconPanel() {
-  return (
-    <div className="media-service-card__icon">
-      {socialIconLayout.map((s, i) => (
-        <img key={i} src={s.icon} alt="" className="media-social-icon" style={s.style} />
-      ))}
-      <div className="media-service-card__ring" />
-      <p className="media-service-card__center-label">Your<br />Socials</p>
-      <div className="media-service-card__cursor" style={{ left: '46%', top: '46%' }}>
-        <img src={icons.handPointer} alt="" />
-        <span className="media-service-card__cursor-tag">QPIC</span>
-      </div>
-      <div className="media-service-card__glow" style={{ background: 'radial-gradient(circle, #999, transparent 70%)' }} />
-    </div>
-  )
-}
 
 export default function Media() {
   useReveal()
@@ -64,7 +52,9 @@ export default function Media() {
     <div className="media">
       {/* HERO — full-bleed blurred video, pulled up behind the transparent navbar */}
       <section className="media-hero">
-        <div className="media-hero__media" style={{ backgroundImage: `url(${heroGlow})` }} />
+        <div className="media-hero__media">
+          <video src={heroGlowVideo} autoPlay muted loop playsInline preload="auto" aria-hidden="true" />
+        </div>
         <div className="media-hero__fade" />
       </section>
 
@@ -98,17 +88,28 @@ export default function Media() {
       {/* OUR SERVICES */}
       <section className="section" id="services">
         <div className="container">
-          <h2 className="section-title reveal" style={{ marginBottom: 40 }}>Our Services</h2>
           <div className="media-services-panel reveal">
+            <h2 className="section-title reveal">
+              Our Services
+            </h2>
             {services.map((service, i) => (
-              <article className={`media-service-card ${i % 2 === 1 ? 'media-service-card--reverse' : ''}`} key={service.title}>
+              <article
+                className={`media-service-card ${
+                  i % 2 === 1 ? 'media-service-card--reverse' : ''
+                }`}
+                key={service.title}
+              >
                 <div className="media-service-card__text">
                   <h3>{service.title}</h3>
                   <p>{service.desc}</p>
                 </div>
-                <ServiceIconPanel />
+
+                <div className="media-service-card__icon">
+                  <video src={ServiceIcon}  autoPlay loop muted playsInline aria-hidden="true"/>
+                </div>
               </article>
             ))}
+
           </div>
         </div>
       </section>
@@ -116,12 +117,13 @@ export default function Media() {
       {/* OUR WORK */}
       <section className="section" id="work">
         <div className="container">
-          <div className="reveal" style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, marginBottom: 40 }}>
-            <h2 className="section-title" style={{ textAlign: 'left', margin: 0 }}>Our Work</h2>
-            <span className="section-title" style={{ fontSize: 'clamp(1.25rem,2.5vw,2.25rem)', margin: 0 }}>◻ From Artboards</span>
-          </div>
+          
 
           <div className="media-work-panel">
+            <div className="media-work-panel-title reveal" style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12}}>
+              <h2 className="section-title reveal" style={{ textAlign: 'left', margin: 0 }}>Our Work</h2>
+              <span className="section-title reveal" style={{ margin: 0 }}>◻ From Artboards</span>
+            </div>
             <TheGridsOf3 />
             <SaleDrivenMultiGrid />
             <D2CBranding />
@@ -148,7 +150,7 @@ export default function Media() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src={icons.instagram} alt="" />
+                      <img src={instagramIcon} alt="" />
                       Check Social
                     </a>
                   </div>
@@ -190,7 +192,7 @@ export default function Media() {
       <section className="section">
         <div className="container">
           <div className="media-showcase reveal">
-            <img src={cinematicShowcase} alt="QPIC cinematic website showcase" loading="lazy" />
+            <video src={cinematicShowcase} autoPlay loop muted playsInline preload="metadata" aria-label="QPIC cinematic website showcase"/>
           </div>
         </div>
       </section>
@@ -208,7 +210,7 @@ export default function Media() {
       {/* Page-local floating bottom nav, unique to the Media page */}
       <nav className="media-bottom-nav" aria-label="Media page sections">
         <a href="#top" className="media-bottom-nav__all" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
-          <img src={icons.infinity} alt="" />
+          {/* <img src={icons?.infinity} alt="" /> */}
           All
         </a>
         <a href="#services" className="media-bottom-nav__link">Services</a>

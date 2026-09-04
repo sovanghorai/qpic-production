@@ -1,9 +1,3 @@
-// About Us page assets — pulled directly from the QPIC Studio Figma file.
-// NOTE: these are Figma-hosted URLs valid for ~7 days from generation.
-// For production, download these and swap in local files under this folder.
-
-export const teamGroupPhoto = 'https://www.figma.com/api/mcp/asset/73ab9f90-8a35-4b63-a2bc-67fe8dda4006.png'
-
 // Trusted brand logos — 5 columns x 3 rows, in Figma's exact grid order
 import brandLogo1 from './logos/logo_1.png'
 import brandLogo2 from './logos/logo_2.png'

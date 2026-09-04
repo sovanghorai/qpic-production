@@ -1,4 +1,6 @@
-import { saleDrivenGrid } from '../../../assets/media/index.js'
+import saleDrivenGrideOne from '../../../assets/media/images/sale_driven_gride_1.png'
+import saleDrivenGrideTwo from '../../../assets/media/images/sale_driven_gride_2.png'
+import saleDrivenGrideThree from '../../../assets/media/images/sale_driven_gride_3.png'
 import './SaleDrivenMultiGrid.css'
 
 export default function SaleDrivenMultiGrid() {
@@ -14,16 +16,16 @@ export default function SaleDrivenMultiGrid() {
 
       <div className="sale-grid__teaser">
         <div className="sale-grid__teaser-wide">
-          <img src={saleDrivenGrid.teaserWide} alt="Sale campaign grid preview" loading="lazy" />
+          <img src={saleDrivenGrideOne} alt="Sale campaign grid preview" loading="lazy" />
         </div>
         <div className="sale-grid__teaser-dark">
-          <img src={saleDrivenGrid.teaserDark} alt="Sale campaign grid detail" loading="lazy" />
+          <img src={saleDrivenGrideTwo} alt="Sale campaign grid detail" loading="lazy" />
         </div>
       </div>
 
       {/* A single continuous tall banner — not a tiled grid, per Figma */}
       <div className="sale-grid__banner">
-        <img src={saleDrivenGrid.tallBanner} alt="Wedding wardrobe sale campaign, full banner" loading="lazy" />
+        <img src={saleDrivenGrideThree} alt="Wedding wardrobe sale campaign, full banner" loading="lazy" />
       </div>
     </article>
   )
