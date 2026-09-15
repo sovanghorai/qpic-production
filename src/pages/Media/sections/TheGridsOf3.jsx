@@ -26,7 +26,7 @@ const gridsOf3 = {
 
 export default function TheGridsOf3() {
   return (
-    <article className="media-case grids-of-3 reveal">
+    <article className="media-case grids-of-3">
 
       <h3 className="media-case__title">
         ✦ The Grids of 3 for insta handles
@@ -43,33 +43,53 @@ export default function TheGridsOf3() {
 
       {/* TOP PREVIEW */}
       <div className="grids-of-3__teaser">
+
         <div className="grids-of-3__teaser-wide">
           <img
             src={gridsOf3.teaserWide}
             alt="Instagram grid layout wide preview"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         </div>
+
         <div className="grids-of-3__teaser-dark">
-          <img src={gridsOf3.teaserDark} alt="Instagram grid layout portrait preview"/>
+          <img
+            src={gridsOf3.teaserDark}
+            alt="Instagram grid layout portrait preview"
+            loading="eager"
+            decoding="async"
+          />
         </div>
+
       </div>
 
       {/* MAIN GRID IMAGES */}
       <div className="grids-of-3__images">
+
         {gridsOf3.rows.map((src, i) => (
-          <div className="grids-of-3__row"
+          <div
+            className="grids-of-3__row"
             key={`grid-${i}`}
           >
             <img
               src={src}
               alt={`Instagram grid post ${i + 1}`}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         ))}
 
         {/* HIGHLIGHT */}
         <div className="grids-of-3__row grids-of-3__row--highlight">
-          <img src={gridsOf3.highlight} alt="Instagram campaign highlight" />
+          <img
+            src={gridsOf3.highlight}
+            alt="Instagram campaign highlight"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </article>

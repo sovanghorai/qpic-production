@@ -13,6 +13,11 @@ import sky_scroll_1 from '../../assets/media/images/sky_scroll.png'
 import silver_scroll_1 from '../../assets/media/images/silver_scroll.png'
 import instagramIcon from '../../assets/common/icons/instagram.svg'
 import cinematicShowcase from '../../assets/media/videos/Chandan_Ji_video.mp4'
+
+import all_icon from '../../assets/common/icons/All.svg'
+import services_icon from '../../assets/common/icons/Services.svg'
+import work_icon from '../../assets/common/icons/Work.svg'
+import contact_icon from '../../assets/common/icons/Free_social_audit.svg'
 import './Media.css'
 
 const scrollPhones = [
@@ -86,7 +91,7 @@ export default function Media() {
       </section>
 
       {/* OUR SERVICES */}
-      <section className="section" id="services">
+      <section className="" id="services">
         <div className="container">
           <div className="media-services-panel reveal">
             <h2 className="section-title reveal">
@@ -139,11 +144,26 @@ export default function Media() {
               <div className="media-phones">
                 {scrollPhones.map((phone, i) => (
                   <div className="media-phone" key={phone.name}>
-                    <div className="media-phone__frame">
-                      <div className="media-phone__scroll">
-                        <img src={phone.image} alt={`${phone.name} Instagram feed preview`} loading="lazy" />
+                    <div
+                        className="media-phone__frame"
+                        onWheel={(e) => {
+                          const frame = e.currentTarget
+
+                          if (frame.scrollHeight > frame.clientHeight) {
+                            e.preventDefault()
+                            frame.scrollTop += e.deltaY
+                          }
+                        }}
+                      >
+                        <div className="media-phone__scroll">
+                          <img
+                            src={phone.image}
+                            alt={`${phone.name} Instagram feed preview`}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
                       </div>
-                    </div>
                     <a
                       className="media-phone__cta"
                       href={instagramUrl}
