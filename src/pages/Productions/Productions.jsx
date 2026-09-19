@@ -2,12 +2,49 @@ import useReveal from '../../hooks/useReveal.js'
 import ContactForm from '../../components/ContactForm/ContactForm.jsx'
 import ProductionBottomNav from './components/ProductionBottomNav.jsx'
 import FeaturedLinks from './components/FeaturedLinks.jsx'
+import ProductionVideoSlider from './components/ProductionVideoSlider.jsx'
+import ProductionHeroVideo from '../../assets/production/videos/Productions_hero.mp4'
+import heroScreenBg from '../../assets/production/videos/music_video.mp4'
+import cinematicShowcase from '../../assets/media/videos/Chandan_Ji_video.mp4'
 import {
-  heroLight, heroLocationIcon, heroBlob, heroScreenBg, heroEyeIcon,
+  heroScreenThumb,
   carouselCardPhoto, carouselTrendIcon, spark, serviceVideos,
-  workAvatar, workLinkIcon, workArrowIcon, cinematicShowcase,
+  workAvatar, workLinkIcon, workArrowIcon,
 } from '../../assets/production/index.js'
 import './Productions.css'
+
+// ===== Video section DIRECTLY BELOW the Hero — completely independent of
+// the Hero video. `ProductionHeroVideo` must never appear in this array;
+// it belongs only to the Hero's own <video> element. Fully data-driven via
+// ProductionVideoSlider — add more objects (video or image type) and the
+// slider adapts automatically, including prev/next arrows. With exactly
+// one entry the arrows render disabled rather than faking a loop. =====
+const featuredVideos = [
+  {
+    type: 'video',
+    src: heroScreenBg,
+    title: '3 PISTOL',
+    subtitle: 'RANA | Latest Punjabi Songs 2026 | New Punjabi Song',
+    views: '236K',
+    tags: '#PunjabiSongs #2026 #QPICProductions',
+    preview: heroScreenThumb,
+  },
+]
+
+// ===== Our Work — nested array structure. Each inner array belongs to one
+// work item; index 0 of that inner array is the main video, the rest are
+// the additional thumbnails. Only 2 entries populated for now — more can
+// be appended later without any JSX changes.
+//
+// NOTE: real distinct clips for these 8 slots aren't available yet, so the
+// existing 6 service-preview images are reused/combined as placeholders
+// (some repeats) until real Our-Work-specific assets are supplied. =====
+const workVideos = [
+  [serviceVideos[0], serviceVideos[1], serviceVideos[2], serviceVideos[3]],
+  [serviceVideos[4], serviceVideos[5], serviceVideos[0], serviceVideos[1]],
+  [serviceVideos[2], serviceVideos[3], serviceVideos[4], serviceVideos[1]],
+  [serviceVideos[3], serviceVideos[4], serviceVideos[1], serviceVideos[2]],
+]
 
 const carouselCards = [
   'Podcast Shoot', 'Short Film Shoot', 'Client Shoot', 'Music Shoot',
@@ -115,7 +152,7 @@ function CircularCarousel() {
   )
 }
 
-function WorkCard({ card, reverse }) {
+function WorkCard({ card, videos, reverse }) {
   return (
     <article className={`prod-work-card reveal ${reverse ? 'prod-work-card--reverse' : ''}`}>
       <div className="prod-work-card__blob" />
@@ -145,7 +182,7 @@ function WorkCard({ card, reverse }) {
         </div>
       </div>
       <div className="prod-work-card__video">
-        <FeaturedLinks videos={serviceVideos.slice(0, 4)} alt={card.title} />
+        <FeaturedLinks videos={videos} alt={card.title} />
       </div>
     </article>
   )
@@ -156,31 +193,20 @@ export default function Productions() {
 
   return (
     <div className="production">
-      {/* HERO — pulled up behind the transparent sticky navbar */}
+      {/* HERO — ProductionHeroVideo plays directly here and ONLY here.
+          The video already contains its own animated text ("It's / QPIC /
+          Jaipur / Productions"), so there is no text overlay, no badge, and
+          no separate CSS/React entrance animation layered on top of it. */}
       <section className="prod-hero">
-        <div className="prod-hero__panel">
-          <div className="prod-hero__light" style={{ backgroundImage: `url(${heroLight})` }} />
-          <p className="prod-hero__its">It's</p>
-          <p className="prod-hero__qpic">QPIC</p>
-          <div className="prod-hero__location">
-            <img src={heroLocationIcon} alt="" />
-            <span>Jaipur</span>
-          </div>
-          <h1 className="prod-hero__title">Productions</h1>
-        </div>
+        <video className="prod-hero__video" src={ProductionHeroVideo} autoPlay muted loop playsInline />
       </section>
 
-      {/* "YouTube mockup" video showcase */}
-      <div className="prod-hero__screen" style={{ backgroundImage: `url(${heroScreenBg})` }}>
-        <div className="prod-hero__screen-overlay">
-          <p className="prod-hero__screen-title">3 PISTOL</p>
-          <p className="prod-hero__screen-sub">RANA | Latest Punjabi Songs 2026 | New Punjabi Song</p>
-          <div className="prod-hero__screen-views">
-            <img src={heroEyeIcon} alt="" />
-            236K
-          </div>
-          <p className="prod-hero__screen-tags">#PunjabiSongs #2026 #QPICProductions</p>
-        </div>
+      {/* VIDEO SECTION DIRECTLY BELOW HERO — a completely separate section
+          from the Hero above. Uses its own independent data (featuredVideos)
+          and its own ProductionVideoSlider instance; the Hero video is never
+          passed in here. */}
+      <div className="prod-featured-section">
+        <ProductionVideoSlider items={featuredVideos} />
       </div>
 
       <div className="prod-blob" style={{ left: '25%', top: '40px' }} />
@@ -204,19 +230,46 @@ export default function Productions() {
         <img src={spark} alt="" className="prod-spark" />
       </section>
 
+      
       {/* SERVICES OFFERED */}
       <section className="section" id="services">
         <div className="container">
-          <h2 className="section-title reveal" style={{ color: '#fff', marginBottom: 48 }}>Services Offered</h2>
+          <h2
+            className="section-title reveal"
+            style={{
+              color: '#fff',
+              marginBottom: 48,
+            }}
+          >
+            Services Offered
+          </h2>
+
           <div className="prod-services">
             {services.map((service, i) => (
-              <article className={`prod-service-row reveal ${i % 2 === 1 ? 'prod-service-row--reverse' : ''}`} key={service.title}>
+              <article
+                className={`prod-service-row reveal ${
+                  i % 2 === 1 ? 'prod-service-row--reverse' : ''
+                }`}
+                key={service.title}
+              >
+                {/* Service description */}
                 <div className="prod-service-row__text">
                   <h3>{service.title}</h3>
                   <p>{service.desc}</p>
                 </div>
+
+                {/* Service video */}
                 <div className="prod-service-row__video">
-                  <img src={serviceVideos[i % serviceVideos.length]} alt={`${service.title} preview`} loading="lazy" />
+                  <video
+                    key={serviceVideos[i % serviceVideos.length]}
+                    src={serviceVideos[i % serviceVideos.length]}
+                    className="prod-service-row__media"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  />
                 </div>
               </article>
             ))}
@@ -224,17 +277,21 @@ export default function Productions() {
         </div>
       </section>
 
-      {/* OUR WORK */}
+      {/* OUR WORK — driven by the `workVideos` nested array; only as many
+          cards render as there are entries in workVideos (2 for now). Add
+          more inner arrays to workVideos and they'll appear automatically,
+          no JSX changes needed. */}
       <section className="section" id="work">
         <div className="container">
           <h2 className="section-title reveal" style={{ color: '#fff', marginBottom: 24 }}>Our Work</h2>
           <img src={spark} alt="" className="prod-spark" />
           <div className="prod-work">
-            {workCards.map((card, i) => (
+            {workVideos.map((videos, i) => (
               <WorkCard
-                card={card}
+                card={workCards[i % workCards.length]}
+                videos={videos}
                 reverse={i % 2 === 1}
-                key={card.title}
+                key={i}
               />
             ))}
           </div>
@@ -243,9 +300,24 @@ export default function Productions() {
 
       {/* Cinematic showcase */}
       <div className="prod-showcase reveal">
-        <img src={cinematicShowcase} alt="QPIC cinematic website showcase" loading="lazy" />
+        <video
+          src={cinematicShowcase}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="QPIC cinematic website showcase"
+        />
       </div>
-
+      
+      <p className="prod-tagline reveal">
+        Every frame has the power to inspire, influence, and be remembered. Let's create visuals that don't just
+        tell your story—they define your brand.
+        <br />
+        Welcome to the future of production with <em>QPIC Productions.</em>
+      </p>
+      
       {/* CONTACT — reuses shared ContactForm */}
       <section className="section" id="contact">
         <div className="container">
@@ -256,12 +328,7 @@ export default function Productions() {
         </div>
       </section>
 
-      <p className="prod-tagline reveal">
-        Every frame has the power to inspire, influence, and be remembered. Let's create visuals that don't just
-        tell your story—they define your brand.
-        <br />
-        Welcome to the future of production with <em>QPIC Productions.</em>
-      </p>
+      
 
       {/* Page-local floating bottom nav, unique to the Productions page */}
       <ProductionBottomNav />

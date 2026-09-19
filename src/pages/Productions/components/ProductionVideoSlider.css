@@ -1,0 +1,433 @@
+
+/* ==========================================
+   PRODUCTION VIDEO SLIDER
+   Screenshot-matched design
+========================================== */
+
+.pvs {
+  width: 100%;
+  position: relative;
+  background: #0c0c12;
+  overflow: hidden;
+}
+
+/* Main video stage */
+
+.pvs__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1920 / 920;
+  min-height: 300px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #08080d;
+}
+
+/* Video / image */
+
+.pvs__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Curved upper and lower edges */
+
+.pvs__stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  background: #0c0c12;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 16%,
+    90% 20%,
+    80% 23%,
+    70% 25%,
+    60% 26%,
+    50% 27%,
+    40% 26%,
+    30% 25%,
+    20% 23%,
+    10% 20%,
+    0 16%
+  );
+}
+
+/* Bottom curved mask */
+
+.pvs__stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  background: #0c0c12;
+
+  clip-path: polygon(
+    0 100%,
+    100% 100%,
+    100% 84%,
+    90% 80%,
+    80% 77%,
+    70% 75%,
+    60% 74%,
+    50% 73%,
+    40% 74%,
+    30% 75%,
+    20% 77%,
+    10% 80%,
+    0 84%
+  );
+}
+
+/* Overlay */
+
+.pvs__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.25) 35%,
+    transparent 70%
+  );
+
+  pointer-events: none;
+}
+
+/* Title */
+
+.pvs__title {
+  position: absolute;
+  left: 4.2%;
+  top: 33%;
+
+  margin: 0;
+
+  font-family: var(--font-heading);
+  font-size: clamp(14px, 1.2vw, 24px);
+  font-weight: 700;
+  line-height: 1.2;
+
+  color: #fff;
+  white-space: nowrap;
+
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Subtitle */
+
+.pvs__subtitle {
+  position: absolute;
+  left: 4.2%;
+  top: 41%;
+
+  width: 19%;
+  min-width: 0;
+
+  margin: 0;
+
+  font-family: var(--font-accent);
+  font-size: clamp(9px, 0.75vw, 15px);
+  font-weight: 400;
+  line-height: 1.3;
+
+  color: #fff;
+  overflow-wrap: break-word;
+
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Views */
+
+.pvs__views {
+  position: absolute;
+  left: 4.2%;
+  top: 60%;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 0;
+
+  color: #fff;
+  font-family: var(--font-accent);
+  font-size: clamp(10px, 0.8vw, 16px);
+}
+
+.pvs__views img {
+  width: clamp(14px, 1.1vw, 22px);
+  height: clamp(14px, 1.1vw, 22px);
+  object-fit: contain;
+}
+
+/* Tags */
+
+
+.pvs__tags {
+  position: absolute;
+  left: 4.2%;
+  top: 72%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+
+  width: max-content;
+  max-width: 35%;
+
+  margin: 0;
+
+  color: #fff;
+  font-family: var(--font-accent);
+  font-size: clamp(9px, 0.9vw, 16px);
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.pvs__tags span {
+  display: block;
+}
+
+/* Next video preview */
+
+.pvs__next-preview {
+  position: absolute;
+  z-index: 4;
+
+  left: 76.6%;
+  top: 22%;
+
+  width: 20.6%;
+  aspect-ratio: 395 / 221;
+
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+
+  overflow: hidden;
+  background: #15151b;
+
+  opacity: 0.3;
+  cursor: pointer;
+
+  transition: opacity 0.25s ease,
+              transform 0.25s ease;
+}
+
+.pvs__next-preview:hover {
+  opacity: 0.75;
+  transform: scale(1.02);
+}
+
+.pvs__next-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mute button */
+
+.pvs__mute {
+  position: absolute;
+  z-index: 5;
+
+  right: 2.8%;
+  bottom: 10%;
+
+  width: clamp(24px, 3.1vw, 42px);
+  height: clamp(24px, 3.1vw, 42px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+.pvs__mute img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pvs__mute:hover {
+  transform: scale(1.1);
+}
+
+/* Bottom navigation arrows */
+
+.pvs__controls {
+  position: absolute;
+  z-index: 5;
+
+  left: 50%;
+  bottom: 5.5%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: clamp(20px, 4.4vw, 50px);
+}
+
+.pvs__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: clamp(24px, 3.1vw, 36px);
+  height: clamp(24px, 3.1vw, 36px);
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+  cursor: pointer;
+
+  transition: transform 0.2s ease,
+              opacity 0.2s ease;
+}
+
+.pvs__arrow img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pvs__arrow:hover:not(:disabled) {
+  transform: scale(1.12);
+}
+
+.pvs__arrow:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.pvs__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 767px) {
+  .pvs__stage {
+    aspect-ratio: 4 / 5;
+    min-height: 420px;
+  }
+
+  .pvs__title {
+    left: 6%;
+    top: auto;
+    bottom: 30%;
+
+    font-size: clamp(18px, 5vw, 26px);
+  }
+
+  .pvs__subtitle {
+    left: 6%;
+    top: auto;
+    bottom: 22%;
+
+    width: 70%;
+    font-size: 12px;
+  }
+
+  .pvs__views {
+    left: 6%;
+    top: auto;
+    bottom: 15%;
+  }
+
+  .pvs__tags {
+    left: 6%;
+    top: auto;
+    bottom: 7%;
+
+    width: 65%;
+    font-size: 11px;
+  }
+
+  .pvs__next-preview {
+    display: none;
+  }
+
+  .pvs__mute {
+    right: 5%;
+    top: 7%;
+    bottom: auto;
+  }
+
+  .pvs__controls {
+    left: auto;
+    right: 5%;
+    bottom: 7%;
+
+    transform: none;
+    gap: 12px;
+  }
+
+  .pvs__arrow {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 420px) {
+  .pvs__stage {
+    min-height: 380px;
+  }
+
+  .pvs__title {
+    bottom: 34%;
+  }
+
+  .pvs__subtitle {
+    bottom: 26%;
+    width: 82%;
+  }
+
+  .pvs__views {
+    bottom: 17%;
+  }
+
+  .pvs__tags {
+    bottom: 8%;
+  }
+}

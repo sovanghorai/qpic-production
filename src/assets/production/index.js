@@ -2,6 +2,12 @@
 // (node "Productions", 1:2019). Figma-hosted URLs, valid ~7 days from
 // generation; download and swap for local files under this folder for a
 // production deploy.
+import serviceVideos_01 from '../../assets/production/videos/serviceVideos_01.mp4'
+import serviceVideos_02 from '../../assets/production/videos/serviceVideos_02.mp4'
+import serviceVideos_03 from '../../assets/production/videos/serviceVideos_03.mp4'
+import serviceVideos_04 from '../../assets/production/videos/serviceVideos_04.mp4'
+import serviceVideos_05 from '../../assets/production/videos/serviceVideos_05.mp4'
+import serviceVideos_06 from '../../assets/production/videos/serviceVideos_06.mp4'
 
 // Hero
 export const heroLight = 'https://www.figma.com/api/mcp/asset/e733aeb5-c7f5-463d-aed3-ba2ff56c9bd3.svg'
@@ -17,6 +23,8 @@ export const heroScreenThumb = 'https://www.figma.com/api/mcp/asset/8183ba79-1f5
 export const heroEyeIcon = 'https://www.figma.com/api/mcp/asset/5e723fdc-3e0f-4b04-a150-9b3853c01960.svg'
 export const heroArrowRight = 'https://www.figma.com/api/mcp/asset/0c5b57e9-bc0d-4ea1-973f-941d24fca6fd.svg'
 export const heroArrowLeft = 'https://www.figma.com/api/mcp/asset/61021d7b-59ec-45e2-a8f1-e8bba6587aa1.svg'
+export const heroMuteIcon = 'https://www.figma.com/api/mcp/asset/bb4c2121-f537-4aee-a308-c8b7a2a72219/85268.svg'
+export const heroNextPreview = 'https://www.figma.com/api/mcp/asset/bb4c2121-f537-4aee-a308-c8b7a2a72219/a377d.png'
 
 // Explore Services — circular carousel card + its glow blob
 export const carouselBlob = 'https://www.figma.com/api/mcp/asset/0f989498-d13b-4eba-a2f6-e40e1eafd39f.svg'
@@ -28,12 +36,12 @@ export const spark = 'https://www.figma.com/api/mcp/asset/92cf3a3d-4b0d-4057-b3f
 // Services Offered — real video thumbnails (each reused across two rows as
 // in the Figma, which cycles through the same six clips)
 export const serviceVideos = [
-  'https://www.figma.com/api/mcp/asset/a77e624d-4de9-474c-8f28-edcb0260314f.png',
-  'https://www.figma.com/api/mcp/asset/09ec36b1-b1c2-4a47-9644-d0030387db4e.png',
-  'https://www.figma.com/api/mcp/asset/74966349-0181-4ab0-9f18-2abbda469120.png',
-  'https://www.figma.com/api/mcp/asset/f7c34ea8-2d7b-4012-a817-1636f1cee8e3.png',
-  'https://www.figma.com/api/mcp/asset/9b127b1e-e417-4390-b4a2-9827d23bf487.png',
-  'https://www.figma.com/api/mcp/asset/b0ac35fd-4b4c-4b8f-b6e9-efb4292782f5.png',
+  serviceVideos_01,
+  serviceVideos_02,
+  serviceVideos_03,
+  serviceVideos_04,
+  serviceVideos_05,
+  serviceVideos_06,
 ]
 
 // Our Work — featured-link avatar + arrow icon (shared across all 7 cards)
