@@ -31,6 +31,9 @@ export default function ProductionVideoSlider({ items }) {
   return (
     <div className="pvs">
       <div className="pvs__stage">
+        {/* <div className="pvs__glow" aria-hidden="true" /> */}
+        <div className="pvs__border" aria-hidden="true" />
+
         {current.type === 'video' ? (
           <video
             key={current.src}
@@ -55,17 +58,17 @@ export default function ProductionVideoSlider({ items }) {
               {current.views}
             </div>
           )}
-          
-        {current.tags && (
-        <div className="pvs__tags">
-            {current.tags
-            .split(/\s+/)
-            .filter(Boolean)
-            .map((tag, i) => (
-                <span key={i}>{tag}</span>
-            ))}
-        </div>
-        )}
+
+          {current.tags && (
+            <div className="pvs__tags">
+              {current.tags
+                .split(/\s+/)
+                .filter(Boolean)
+                .map((tag, i) => (
+                  <span key={i}>{tag}</span>
+                ))}
+            </div>
+          )}
         </div>
 
         {nextPreview && (
@@ -79,20 +82,19 @@ export default function ProductionVideoSlider({ items }) {
           </button>
         )}
 
-        
         {current.type === 'video' && (
-        <button
+          <button
             type="button"
             className="pvs__mute"
             onClick={() => setMuted((m) => !m)}
             aria-label={muted ? 'Unmute video' : 'Mute video'}
             title={muted ? 'Unmute video' : 'Mute video'}
-        >
+          >
             <img
-            src={heroMuteIcon}
-            alt=""
+              src={heroMuteIcon}
+              alt=""
             />
-        </button>
+          </button>
         )}
 
         <div className="pvs__controls">

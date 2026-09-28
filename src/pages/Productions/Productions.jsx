@@ -157,12 +157,14 @@ function WorkCard({ card, videos, reverse }) {
     <article className={`prod-work-card reveal ${reverse ? 'prod-work-card--reverse' : ''}`}>
       <div className="prod-work-card__blob" />
       <div className="prod-work-card__text">
-        <h3>✦ {card.title}</h3>
-        <p>{card.desc}</p>
+        <div className="prod-work-card__text-inner">
+          <h3>✦ {card.title}</h3>
+          <p>{card.desc}</p>
+        </div>
         <div className="prod-work-card__featured">
           <div className="prod-work-card__featured-label">
-            <img src={workLinkIcon} alt="" />
             Featured links
+            <img src={workLinkIcon} alt="" />
           </div>
           <div className="prod-work-card__link">
             <div className="prod-work-card__link-left">
@@ -205,30 +207,33 @@ export default function Productions() {
           from the Hero above. Uses its own independent data (featuredVideos)
           and its own ProductionVideoSlider instance; the Hero video is never
           passed in here. */}
-      <div className="prod-featured-section">
-        <ProductionVideoSlider items={featuredVideos} />
+      <div className="prod-page">
+        <div className="prod-featured-section">
+          <ProductionVideoSlider items={featuredVideos} />
+        </div>
+
+        <div className="prod-blob" style={{ left: '25%', top: '40px' }} />
+
+        <section className="prod-intro reveal">
+          <p className="prod-intro__kicker">That what we do at</p>
+          <h2 className="prod-intro__title">QPIC Productions</h2>
+        </section>
       </div>
-
-      <div className="prod-blob" style={{ left: '25%', top: '40px' }} />
-
-      <section className="prod-intro reveal">
-        <p className="prod-intro__kicker">That what we do at</p>
-        <h2 className="prod-intro__title">QPIC Productions</h2>
-      </section>
-
-      <div className="prod-ribbon">
-        <div className="prod-ribbon__track">
-          {Array(3).fill('✦ Client Shoot   ✦ Music Shoot   ✦ Short-Film Shoot   ✦ Podcast Shoot   ✦ Event Shoot   ✦ UGC Model Shoot   ✦ Product Shoot   ').map((t, i) => (
-            <span key={i}>{t}</span>
-          ))}
+      <div className="prod-ribbon-div">
+        <div className="prod-ribbon">
+          <div className="prod-ribbon__track">
+            {Array(3).fill('✦ Client Shoot   ✦ Music Shoot   ✦ Short-Film Shoot   ✦ Podcast Shoot   ✦ Event Shoot   ✦ UGC Model Shoot   ✦ Product Shoot   ').map((t, i) => (
+              <span key={i}>{t}</span>
+            ))}
+          </div>
         </div>
       </div>
 
-      <section className="section" style={{ position: 'relative' }}>
+      {/* <section className="section" style={{ position: 'relative' }}>
         <div className="prod-blob" style={{ left: '25%', top: '80px' }} />
         <CircularCarousel />
         <img src={spark} alt="" className="prod-spark" />
-      </section>
+      </section> */}
 
       
       {/* SERVICES OFFERED */}

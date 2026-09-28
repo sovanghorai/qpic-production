@@ -1,6 +1,7 @@
 /* ============================================
    MEDIA HERO
 ============================================ */
+
 .media-hero {
   position: relative;
   z-index: 1;
@@ -10,10 +11,6 @@
   overflow: hidden;
 }
 
-/* ============================================
-   VIDEO WRAPPER
-============================================ */
-
 .media-hero__media {
   position: absolute;
   inset: 0;
@@ -22,9 +19,6 @@
   overflow: hidden;
   z-index: 0;
 }
-/* ============================================
-   VIDEO
-============================================ */
 
 .media-hero__media video {
   position: absolute;
@@ -37,12 +31,8 @@
   object-fit: cover;
   object-position: center;
   transform: translate(-50%, -50%) scale(1.3);
-
   display: block;
 }
-/* ============================================
-   BOTTOM FADE
-============================================ */
 
 .media-hero__fade {
   position: absolute;
@@ -50,16 +40,18 @@
   right: 0;
   bottom: 0;
   height: 45%;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      var(--color-bg) 92%
-    );
-
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    var(--color-bg) 92%
+  );
   pointer-events: none;
   z-index: 2;
 }
+
+/* ============================================
+   MEDIA INTRO
+============================================ */
 
 .media-intro {
   padding-top: clamp(32px, 5.5vw, 90px);
@@ -74,7 +66,7 @@
 .media-intro__title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(3rem, 10vw, 9.85rem); /* 192px at 1920 */
+  font-size: clamp(3rem, 10vw, 9.85rem);
   line-height: 1.1;
   color: var(--color-black);
 }
@@ -93,9 +85,10 @@
   font-weight: 800;
 }
 
-/* ===== Marquee ribbons — exact prototype timing: logos loop over 45s
-   linear, text ribbon loops over the same 45s cycle. Distances are relative
-   (own-track %) so they scale responsively at any width. ===== */
+/* ============================================
+   MARQUEE RIBBONS
+============================================ */
+
 .media-logo-ribbon {
   overflow: hidden;
   border: 6px solid var(--color-white);
@@ -121,17 +114,12 @@
   opacity: 0.8;
 }
 
-@keyframes media-logo-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
 .media-text-ribbon {
   overflow: hidden;
   background: var(--color-glass-white);
-  border-radius: 20px;
+  border-radius: 14px;
   box-shadow: var(--shadow-soft);
-  padding: 18px 0;
+  padding: 10px 0;
 }
 
 .media-text-track {
@@ -141,28 +129,34 @@
   animation: media-logo-scroll 45s linear infinite;
   font-family: var(--font-display);
   color: var(--color-heading-muted);
-  font-size: clamp(1.1rem, 2vw, 1.9rem);
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
 }
-/* =========================================================
-  ====================== OUR SERVICES ======================
-   ========================================================= */
 
-  .media-services-panel {
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(18px, 2vw, 26px);
-    /* Remove the unwanted outer frame */
-    border: none !important;
-    box-shadow: none !important;
-    /* Keep the background clean */
-    background: transparent;
-    padding: 0;
+@keyframes media-logo-scroll {
+  from {
+    transform: translateX(0);
   }
-/* =========================================================
-   SECTION TITLE
-   ========================================================= */
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================
+   OUR SERVICES
+============================================ */
+
+.media-services-panel {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2vw, 26px);
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+  padding: 0;
+}
 
 .media-services-panel .section-title {
   align-self: center;
@@ -175,38 +169,23 @@
   line-height: 1.1;
 }
 
-
-/* =========================================================
-   SERVICE CARD
-   ========================================================= */
-
 .media-service-card {
   width: 100%;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: row;
   align-items: center;
-
   gap: clamp(18px, 2vw, 26px);
-  padding: clamp(16px, 2vw, 24px);
-
+  padding: clamp(8px, 2vw, 12px);
   border: 8px solid var(--color-white);
   border-radius: var(--radius-lg);
-
   background: var(--color-glass-white);
   box-shadow: var(--shadow-soft);
 }
 
-/* Every second card is reversed */
 .media-service-card--reverse {
   flex-direction: row-reverse;
 }
-
-
-/* =========================================================
-   TEXT BOX
-   ========================================================= */
 
 .media-service-card__text {
   flex: 1 1 auto;
@@ -221,7 +200,6 @@
   flex-direction: column;
   gap: 10px;
 }
-
 
 .media-service-card__text h3 {
   margin: 0;
@@ -240,11 +218,6 @@
   color: #1a1a1a;
 }
 
-
-/* =========================================================
-   VIDEO / SOCIAL ICON PANEL
-   ========================================================= */
-
 .media-service-card__icon {
   position: relative;
   flex: 0 0 clamp(145px, 16vw, 175px);
@@ -256,14 +229,11 @@
   border-radius: var(--radius-md);
   background: var(--color-glass-white);
   box-shadow: var(--shadow-soft);
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-
-/* Actual MP4 */
 .media-service-card__icon video {
   display: block;
   width: 100%;
@@ -272,78 +242,9 @@
   border-radius: inherit;
 }
 
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-  .media-services-panel {
-    border-width: 10px;
-  }
-
-  .media-service-card {
-    gap: 16px;
-    padding: 14px;
-    border-width: 7px;
-  }
-
-  .media-service-card__icon {
-    flex-basis: 145px;
-    width: 145px;
-  }
-
-  .media-service-card__text {
-    padding: 18px 20px;
-  }
-
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 650px) {
-
-  .media-services-panel {
-    /* padding: 16px; */
-    border-width: 7px;
-    gap: 16px;
-  }
-
-  .media-services-panel .section-title {
-    border-width: 4px;
-    padding: 7px 16px;
-  }
-
-  .media-service-card,
-  .media-service-card--reverse {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 12px;
-    border-width: 6px;
-  }
-
-  .media-service-card__text {
-    width: 100%;
-    border-width: 5px;
-    padding: 17px;
-  }
-
-  .media-service-card__icon {
-  width: 100%;
-  flex: 0 0 auto;
-  align-self: stretch;
-  aspect-ratio: 1 / 1;
-  border-width: 5px;
-}
-
-}
-/* ===== Our Work ===== */
-/* =========================================================
-   OUR WORK — TIGHT CASE STUDY STACK
-   ========================================================= */
+/* ============================================
+   OUR WORK
+============================================ */
 
 .media-work-panel {
   width: 100%;
@@ -352,20 +253,15 @@
   gap: 14px;
 }
 
-
-/* Remove accidental spacing between the case studies */
-
 .media-work-panel > * {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
-
-/* Keep the case-study cards themselves compact */
-
 .media-work-panel .media-case {
   margin: 0 !important;
 }
+
 .media-work-panel-title .section-title {
   align-self: center;
   margin: 0 0 2px;
@@ -377,13 +273,12 @@
   line-height: 1.1;
 }
 
-
 .media-case {
   border: 10px solid var(--color-white);
   border-radius: var(--radius-lg);
   background: var(--color-glass-white);
   box-shadow: var(--shadow-soft);
-  padding: clamp(24px, 3vw, 40px);
+  padding: clamp(8px, 2vw, 24px);
 }
 
 .media-case__title {
@@ -413,7 +308,10 @@
   margin-top: 24px;
 }
 
-/* ===== Social Media Aesthetics — long-scroll phone tickers ===== */
+/* ============================================
+   SOCIAL MEDIA AESTHETICS
+============================================ */
+
 .media-phones {
   display: flex;
   flex-wrap: wrap;
@@ -429,39 +327,21 @@
   width: clamp(160px, 22vw, 240px);
 }
 
-/* =========================================================
-   INSTAGRAM PHONE FEED
-   ========================================================= */
-
 .media-phone__frame {
   width: 100%;
   aspect-ratio: 9 / 16;
-
   border: 8px solid var(--color-white);
   border-radius: var(--radius-md);
-
   box-shadow: var(--shadow-soft);
-
-  /* IMPORTANT */
   overflow-y: auto;
   overflow-x: hidden;
-
   position: relative;
-
   background: var(--color-glass-white);
-
   -webkit-overflow-scrolling: touch;
-
-  /* Make this element the scroll container */
   overscroll-behavior: contain;
   touch-action: pan-y;
-
-  /* Better browser scrolling */
   scrollbar-width: thin;
 }
-
-
-/* The actual long Instagram image */
 
 .media-phone__scroll {
   width: 100%;
@@ -469,22 +349,14 @@
   min-height: 100%;
 }
 
-
 .media-phone__scroll img {
   display: block;
-
   width: 100%;
   height: auto;
-
   max-width: none;
-
   object-fit: contain;
-
-  /* Don't let the image capture the wheel/touch interaction */
   pointer-events: none;
-
   user-select: none;
-
   -webkit-user-drag: none;
 }
 
@@ -513,7 +385,10 @@
   height: 20px;
 }
 
-/* ===== Cinematic showcase ===== */
+/* ============================================
+   CINEMATIC SHOWCASE
+============================================ */
+
 .media-showcase {
   width: 100%;
   box-sizing: border-box;
@@ -532,13 +407,19 @@
   object-fit: cover;
 }
 
-/* ===== Free Social Audit — heading above the reused ContactForm ===== */
+/* ============================================
+   FREE SOCIAL AUDIT
+============================================ */
+
 .media-audit-title {
   text-align: center;
   margin-bottom: 40px;
 }
 
-/* ===== Floating page-local bottom nav (Media page only) ===== */
+/* ============================================
+   FLOATING BOTTOM NAV
+============================================ */
+
 .media-bottom-nav {
   position: fixed;
   left: 50%;
@@ -587,29 +468,60 @@
   background: var(--color-border-grey);
 }
 
+/* ============================================
+   RESPONSIVE — TABLET
+============================================ */
+
 @media (max-width: 1199px) {
   .media-hero {
     margin-top: var(--nav-overlay-tablet, -116px);
   }
 }
 
+@media (max-width: 900px) {
+  .media-services-panel {
+    border-width: 10px;
+  }
+
+  .media-service-card {
+    gap: 16px;
+    padding: 14px;
+    border-width: 7px;
+  }
+
+  .media-service-card__icon {
+    flex-basis: 145px;
+    width: 145px;
+  }
+
+  .media-service-card__text {
+    padding: 18px 20px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE
+============================================ */
+
 @media (max-width: 767px) {
   .media-hero {
     margin-top: var(--nav-overlay-mobile, -168px);
     height: clamp(280px, 90vw, 460px);
   }
+
   .media-service-card,
   .media-service-card--reverse {
     flex-direction: column;
+    align-items: stretch;
   }
-  @media (max-width: 767px) {
+
   .media-service-card__icon {
     flex: 0 0 auto;
     width: 100%;
     align-self: stretch;
     aspect-ratio: 1 / 1;
   }
-}
+
   .media-bottom-nav {
     bottom: 12px;
     gap: 10px;
@@ -617,12 +529,39 @@
     max-width: calc(100vw - 24px);
     overflow-x: auto;
   }
+
   .media-bottom-nav__link {
     font-size: 0.8rem;
     white-space: nowrap;
   }
 }
+
 @media (max-width: 650px) {
+  .media-services-panel {
+    border-width: 7px;
+    gap: 16px;
+  }
+
+  .media-services-panel .section-title {
+    border-width: 4px;
+    padding: 7px 16px;
+  }
+
+  .media-service-card,
+  .media-service-card--reverse {
+    padding: 12px;
+    border-width: 6px;
+  }
+
+  .media-service-card__text {
+    width: 100%;
+    border-width: 5px;
+    padding: 17px;
+  }
+
+  .media-service-card__icon {
+    border-width: 5px;
+  }
 
   /* Social Media Aesthetics — 2 images in one row */
   .media-phones {
@@ -657,9 +596,11 @@
     height: 17px;
   }
 }
-.media-case {
-  padding: clamp(8px, 2vw, 24px);
-}
+
+/* ============================================
+   ACCESSIBILITY
+============================================ */
+
 @media (prefers-reduced-motion: reduce) {
   .media-logo-track,
   .media-text-track,

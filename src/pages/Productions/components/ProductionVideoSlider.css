@@ -1,4 +1,3 @@
-
 /* ==========================================
    PRODUCTION VIDEO SLIDER
    Screenshot-matched design
@@ -7,7 +6,7 @@
 .pvs {
   width: 100%;
   position: relative;
-  background: #0c0c12;
+  background: transparent; /* was #0c0c12 */
   overflow: hidden;
 }
 
@@ -20,10 +19,34 @@
   min-height: 300px;
   overflow: hidden;
   isolation: isolate;
-  background: #08080d;
+  background: transparent; /* was #08080d */
 }
 
-/* Video / image */
+/* Animated glow behind the curved media */
+
+/* .pvs__glow {
+  position: absolute;
+  inset: -10%;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(45% 35% at 15% 8%,  rgba(64, 110, 255, 0.55) 0%, rgba(64, 110, 255, 0) 70%),
+    radial-gradient(45% 35% at 85% 8%,  rgba(64, 110, 255, 0.55) 0%, rgba(64, 110, 255, 0) 70%),
+    radial-gradient(45% 35% at 20% 96%, rgba(255, 45, 85, 0.5) 0%, rgba(255, 45, 85, 0) 70%),
+    radial-gradient(45% 35% at 80% 96%, rgba(255, 45, 85, 0.5) 0%, rgba(255, 45, 85, 0) 70%);
+  filter: blur(30px);
+  animation: pvsGlowShift 10s ease-in-out infinite alternate;
+} */
+
+@keyframes pvsGlowShift {
+  0%   { transform: translateX(-6%) translateY(0)   scale(1);    opacity: 0.85; }
+  50%  { transform: translateX(6%)  translateY(-1%) scale(1.04); opacity: 1;    }
+  100% { transform: translateX(-4%) translateY(1%)  scale(1.02); opacity: 0.9;  }
+}
+
+/* Video / image — wavy clip creates the curved top/bottom edges and
+   lets .pvs__glow show through the crescent gaps */
 
 .pvs__media {
   position: absolute;
@@ -32,62 +55,11 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  z-index: 0;
-}
-
-/* Curved upper and lower edges */
-
-.pvs__stage::before {
-  content: "";
-  position: absolute;
-  inset: 0;
   z-index: 2;
-  pointer-events: none;
-
-  background: #0c0c12;
 
   clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 16%,
-    90% 20%,
-    80% 23%,
-    70% 25%,
-    60% 26%,
-    50% 27%,
-    40% 26%,
-    30% 25%,
-    20% 23%,
-    10% 20%,
-    0 16%
-  );
-}
-
-/* Bottom curved mask */
-
-.pvs__stage::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-
-  background: #0c0c12;
-
-  clip-path: polygon(
-    0 100%,
-    100% 100%,
-    100% 84%,
-    90% 80%,
-    80% 77%,
-    70% 75%,
-    60% 74%,
-    50% 73%,
-    40% 74%,
-    30% 75%,
-    20% 77%,
-    10% 80%,
-    0 84%
+    0 17.4%, 10% 20.4%, 20% 23.4%, 30% 25.4%, 40% 27.4%, 50% 28.4%, 60% 27.4%, 70% 25.4%, 80% 23.4%, 90% 20.4%, 100% 17.4%,
+    100% 82.6%, 90% 79.6%, 80% 76.6%, 70% 74.6%, 60% 72.6%, 50% 71.6%, 40% 72.6%, 30% 74.6%, 20% 76.6%, 10% 79.6%, 0 82.6%
   );
 }
 
@@ -176,7 +148,6 @@
 }
 
 /* Tags */
-
 
 .pvs__tags {
   position: absolute;
@@ -346,6 +317,13 @@
   .pvs__stage {
     aspect-ratio: 4 / 5;
     min-height: 420px;
+  }
+
+  .pvs__media {
+    clip-path: polygon(
+      0 6%, 15% 10%, 30% 13%, 50% 15%, 70% 13%, 85% 10%, 100% 6%,
+      100% 94%, 85% 90%, 70% 87%, 50% 85%, 30% 87%, 15% 90%, 0 94%
+    );
   }
 
   .pvs__title {

@@ -118,6 +118,19 @@ export default function Media() {
           </div>
         </div>
       </section>
+      
+       {/* Text ribbon */}
+      <section className="" style={{ paddingTop: 20 }}>
+        <div className="container">
+          <div className="media-text-ribbon reveal">
+            <div className="media-text-track">
+              {Array(3).fill('✦ Social Media Marketing ✦ Performance Marketing ✦ Content Creation ✦ Branding ✦ UI/UX & Development ').map((t, i) => (
+                <span key={i}>{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* OUR WORK */}
       <section className="section" id="work">
@@ -195,18 +208,7 @@ export default function Media() {
         </div>
       </section>
 
-      {/* Text ribbon */}
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container">
-          <div className="media-text-ribbon reveal">
-            <div className="media-text-track">
-              {Array(3).fill('✦ Social Media Marketing ✦ Performance Marketing ✦ Content Creation ✦ Branding ✦ UI/UX & Development ').map((t, i) => (
-                <span key={i}>{t}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       {/* Cinematic showcase */}
       <section className="section">
