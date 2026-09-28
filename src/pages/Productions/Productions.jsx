@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import useReveal from '../../hooks/useReveal.js'
 import ContactForm from '../../components/ContactForm/ContactForm.jsx'
 import ProductionBottomNav from './components/ProductionBottomNav.jsx'
@@ -191,7 +192,28 @@ function WorkCard({ card, videos, reverse }) {
 }
 
 export default function Productions() {
-  useReveal()
+    useReveal()
+    const heroVideoRef = useRef(null)
+    useEffect(() => {
+      const video = heroVideoRef.current
+      if (!video) return
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            video.currentTime = 0
+            video.play().catch(() => {})
+          }
+        },
+        {
+          threshold: 0.6,
+        }
+      )
+      observer.observe(video)
+      return () => {
+        observer.disconnect()
+      }
+    }, [])
 
   return (
     <div className="production">
@@ -200,7 +222,13 @@ export default function Productions() {
           Jaipur / Productions"), so there is no text overlay, no badge, and
           no separate CSS/React entrance animation layered on top of it. */}
       <section className="prod-hero">
-        <video className="prod-hero__video" src={ProductionHeroVideo} autoPlay muted loop playsInline />
+        <video ref={heroVideoRef}
+          className="prod-hero__video"
+          src={ProductionHeroVideo}
+          muted
+          playsInline
+          preload="auto"
+        />
       </section>
 
       {/* VIDEO SECTION DIRECTLY BELOW HERO — a completely separate section
