@@ -58,8 +58,29 @@
   z-index: 2;
 
   clip-path: polygon(
-    0 17.4%, 10% 20.4%, 20% 23.4%, 30% 25.4%, 40% 27.4%, 50% 28.4%, 60% 27.4%, 70% 25.4%, 80% 23.4%, 90% 20.4%, 100% 17.4%,
-    100% 82.6%, 90% 79.6%, 80% 76.6%, 70% 74.6%, 60% 72.6%, 50% 71.6%, 40% 72.6%, 30% 74.6%, 20% 76.6%, 10% 79.6%, 0 82.6%
+    0 22%,
+    10% 24.5%,
+    20% 26.5%,
+    30% 28%,
+    40% 29%,
+    50% 29.5%,
+    60% 29%,
+    70% 28%,
+    80% 26.5%,
+    90% 24.5%,
+    100% 22%,
+
+    100% 78%,
+    90% 75.5%,
+    80% 73.5%,
+    70% 72%,
+    60% 71%,
+    50% 70.5%,
+    40% 71%,
+    30% 72%,
+    20% 73.5%,
+    10% 75.5%,
+    0 78%
   );
 }
 
@@ -105,7 +126,7 @@
 .pvs__subtitle {
   position: absolute;
   left: 4.2%;
-  top: 41%;
+  top: 38%;
 
   width: 19%;
   min-width: 0;
@@ -128,7 +149,7 @@
 .pvs__views {
   position: absolute;
   left: 4.2%;
-  top: 60%;
+  top: 50%;
 
   display: flex;
   align-items: center;
@@ -152,7 +173,7 @@
 .pvs__tags {
   position: absolute;
   left: 4.2%;
-  top: 72%;
+  top: 60%;
 
   display: flex;
   flex-direction: column;
@@ -319,44 +340,56 @@
     min-height: 420px;
   }
 
-  .pvs__media {
+   .pvs__media {
     clip-path: polygon(
-      0 6%, 15% 10%, 30% 13%, 50% 15%, 70% 13%, 85% 10%, 100% 6%,
-      100% 94%, 85% 90%, 70% 87%, 50% 85%, 30% 87%, 15% 90%, 0 94%
+      0 20%,
+      15% 22%,
+      30% 23.5%,
+      50% 24.5%,
+      70% 23.5%,
+      85% 22%,
+      100% 20%,
+
+      100% 80%,
+      85% 78%,
+      70% 76.5%,
+      50% 75.5%,
+      30% 76.5%,
+      15% 78%,
+      0 80%
     );
   }
 
   .pvs__title {
-    left: 6%;
-    top: auto;
-    bottom: 30%;
+  left: 6%;
+  top: 43%;
+  bottom: auto;
+  font-size: clamp(18px, 5vw, 26px);
+}
 
-    font-size: clamp(18px, 5vw, 26px);
-  }
+.pvs__subtitle {
+  left: 6%;
+  top: 50%;
+  bottom: auto;
 
-  .pvs__subtitle {
-    left: 6%;
-    top: auto;
-    bottom: 22%;
+  width: 70%;
+  font-size: 12px;
+}
 
-    width: 70%;
-    font-size: 12px;
-  }
+.pvs__views {
+  left: 6%;
+  top: 52%;
+  bottom: auto;
+}
 
-  .pvs__views {
-    left: 6%;
-    top: auto;
-    bottom: 15%;
-  }
+.pvs__tags {
+  left: 6%;
+  top: 60%;
+  bottom: auto;
 
-  .pvs__tags {
-    left: 6%;
-    top: auto;
-    bottom: 7%;
-
-    width: 65%;
-    font-size: 11px;
-  }
+  width: 65%;
+  font-size: 11px;
+}
 
   .pvs__next-preview {
     display: none;
@@ -393,19 +426,23 @@
   }
 
   .pvs__title {
-    bottom: 34%;
+    top: 30%;
+    bottom: auto;
   }
 
   .pvs__subtitle {
-    bottom: 26%;
+    top: 40%;
+    bottom: auto;
     width: 82%;
   }
 
   .pvs__views {
-    bottom: 17%;
+    top: 50%;
+    bottom: auto;
   }
 
   .pvs__tags {
-    bottom: 8%;
+    top: 60%;
+    bottom: auto;
   }
 }
