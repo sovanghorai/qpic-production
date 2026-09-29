@@ -19,6 +19,8 @@ import services_icon from '../../assets/common/icons/Services.svg'
 import work_icon from '../../assets/common/icons/Work.svg'
 import contact_icon from '../../assets/common/icons/Free_social_audit.svg'
 import './Media.css'
+import MediaBottomNav from './components/MediaBottomNav.jsx'
+
 
 const scrollPhones = [
   { name: 'mykaa-scroll-1', image: mykaa_scroll_1 },
@@ -230,17 +232,7 @@ export default function Media() {
       </section>
 
       {/* Page-local floating bottom nav, unique to the Media page */}
-      <nav className="media-bottom-nav" aria-label="Media page sections">
-        <a href="#top" className="media-bottom-nav__all" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
-          {/* <img src={icons?.infinity} alt="" /> */}
-          All
-        </a>
-        <a href="#services" className="media-bottom-nav__link">Services</a>
-        <span className="media-bottom-nav__divider" />
-        <a href="#work" className="media-bottom-nav__link">Work</a>
-        <span className="media-bottom-nav__divider" />
-        <a href="#contact" className="media-bottom-nav__link">Free Social Audit</a>
-      </nav>
+      <MediaBottomNav />
     </div>
   )
 }
